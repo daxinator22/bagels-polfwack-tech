@@ -1,0 +1,17 @@
+Functionality
+-Be able to order bagels, schmear and bagel sandwhiches
+-Be able to control inventory, generate report of what inventory is needed
+-Be able to log into accounts populated with money
+
+Usability
+-Have different accounts for customers, cashiers, chefs and managers
+-Manager needs to be able to create accounts for cashiers and chefs
+-Be able to choose a particular time to show up
+-Chefs should be able to see orders with bagels and bagel sandwhiches
+-Cashiers should be able to see orders with bagels and schmears
+
+Reliability
+
+Performance
+
+Support
