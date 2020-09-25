@@ -1,17 +1,31 @@
-Functionality
+Introduction and Context
+One day in the year of the rat, a nice man named Dan approached us with one goal: to expand his bagel enterprise. Dan wanted some way
+that he and his customers could access his beloved bagel shop online. Dan wanted Dan's Bagels to go all over the world. This is why he
+contacted the best group of programmers to do this. This is why he contacted HighFive. That is exactly what we will do.
+
+Users and their Goals
+-Customer: order bagels, log into their account, buy bagels with pre-loaded money
+-Chef: view bagel orders in a queue
+-Cashier: view orders, provide customers with orders
+-Manager: view whole process, update inventory
+
+Functional
 -Be able to order bagels, schmear and bagel sandwhiches
 -Be able to control inventory, generate report of what inventory is needed
 -Be able to log into accounts populated with money
-
-Usability
 -Have different accounts for customers, cashiers, chefs and managers
 -Manager needs to be able to create accounts for cashiers and chefs
 -Be able to choose a particular time to show up
--Chefs should be able to see orders with bagels and bagel sandwhiches
--Cashiers should be able to see orders with bagels and schmears
 
-Reliability
+Non-functional
+-Customers should be able to choose to pick up orders at any hour during store hours
+-Manager should have no limit in terms of adding to inventory
+-Should be able to handle 20 customers logging in at the same time
+-Should be able to handle the current number of employees (i.e. cashiers, chefs, managers) logged in at the same tiem
 
-Performance
+Future features
+-Order is ready notifications
+-Adding/removing items in queue
+-Keep track of how many things are sold, analytics
 
-Support
+Glossary
