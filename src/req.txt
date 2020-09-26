@@ -21,7 +21,7 @@ Non-functional
 -Customers should be able to choose to pick up orders at any hour during store hours
 -Manager should have no limit in terms of adding to inventory
 -Should be able to handle 20 customers logging in at the same time
--Should be able to handle the current number of employees (i.e. cashiers, chefs, managers) logged in at the same tiem
+-Should be able to handle the current number of employees (i.e. cashiers, chefs, managers) logged in at the same time
 
 Future features
 -Order is ready notifications
@@ -29,3 +29,6 @@ Future features
 -Keep track of how many things are sold, analytics
 
 Glossary
+-Inventory: the amount of bagels, schmears and other things are in storage
+-Analyitics: statistics on how many of each thing are sold
+-Queue: a list of orders sorted by the time that they were made (FIFO)
