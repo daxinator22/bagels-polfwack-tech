@@ -1,0 +1,89 @@
+.shadowed {
+	text-shadow: 1px 1px 2px black;
+	color: white;
+}
+
+h2 {
+	text-align: center;
+	color: RoyalBlue;
+}
+
+p {
+	text-align: center;
+	font-family: 'helvetica neue', helvetica, sans-serif;
+	color: grey;
+}
+
+li {
+	text-align: center;
+	font-family: 'helvetica neue', helvetica, sans-serif;
+	color: grey;
+}
+
+#homepage{
+     background: url("/static/home/bakery.jpg") 50% 0 no-repeat fixed;
+		 background-size: 1000px 600px;
+     color: grey;
+     height: 650px;
+     padding: 100px 0 0 0;
+     }
+
+.stuff-box {
+	font-family: 'helvetica neue', helvetica, sans-serif;
+	color: grey;
+	letter-spacing: 1px;
+	text-transform: capitalize;
+	text-align: center;
+	padding: 3px 10px;
+	margin: 10px;
+	cursor: pointer;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	background: rgb(180,180,60);
+}
+
+.timestamp {
+    font-size: smaller;
+    font-family: monospace;
+    padding: 0px 10px;
+}
+
+.red {
+	border-color: rgb(255,0,0);
+	background:   rgb(180,60,60);
+	box-shadow: 1px 1px 2px rgba(200,0,0,0.4);
+}
+
+.yellow {
+	border-color: rgb(255,255,0);
+	background:   rgb(180,180,60);
+	box-shadow: 1px 1px 2px rgba(200,200,0,0.4);
+
+}
+
+.center {
+	text-align: center;
+}
+
+.blue {
+	border-color: rgb(0,0,255);
+	background:   rgb(60,60,180);
+	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
+}
+
+.green {
+	border-color: rgb(0,255,0);
+	background:   rgb(60,180,60);
+	box-shadow: 1px 1px 2px rgba(0,200,0,0.4);
+}
+
+.black {
+    border-color: rgb(0,0,0);
+    background:   rgb(75,75,75);
+    box-shadow: 1px 1px 2px rgba(200,200,0,0.4);
+}
+
+div {
+   text-align: center;
+}
