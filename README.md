@@ -10,7 +10,10 @@ Tool stack description and set up procedure:
 * Because we are using Django, you should just be able to visit a specific url (which will be determined in the future) to be able to see the process.
 
 Build instructions: 
-* We are building the program in Django.
+* Building the current state of the Django Project:
+	1. cd into the directory highFiveBagels/src/highFive
+	2. run the command "python manage.py runserver"
+	3. On your web browser search bar, enter "http://127.0.0.1:8000/home
 
 Unit testing instructions: 
 * We expect all the code to be unit tested piece by piece.
