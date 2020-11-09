@@ -29,11 +29,3 @@ def checkout(request):
 
     }
     return render(request, 'home/checkout.html', context)
-
-def logIn(request):
-    #template = loader.get_template('home/orderBuild.html')
-    context = {
-
-    }
-    return render(request, 'home/logIn.html', context)
-# Create your views here.
