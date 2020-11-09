@@ -1,14 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template.loader import get_template
 
-
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+
+from django.urls import reverse_lazy
+from django.views import generic
+
 
 def index(request):
     template = loader.get_template('home/index.html')
@@ -29,3 +34,8 @@ def checkout(request):
 
     }
     return render(request, 'home/checkout.html', context)
+
+# class SignUpView(generic.CreateView):
+#     form_class = UserCreationForm
+#     success_url = reverse_lazy('login')
+#     template_name = 'registration/signup.html'
