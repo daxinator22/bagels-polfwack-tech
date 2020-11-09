@@ -13,6 +13,11 @@ p {
 	font-family: 'helvetica neue', helvetica, sans-serif;
 	color: grey;
 }
+div .logIn {
+	text-align: center;
+	font-family: 'helvetica neue', helvetica, sans-serif;
+	color: grey;
+}
 
 li {
 	text-align: center;
