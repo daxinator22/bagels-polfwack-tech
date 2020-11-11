@@ -35,6 +35,12 @@ def checkout(request):
     }
     return render(request, 'home/checkout.html', context)
 
+def login(request):
+    context = {
+
+    }
+    return render(request, 'home/login.html', context)
+
 # class SignUpView(generic.CreateView):
 #     form_class = UserCreationForm
 #     success_url = reverse_lazy('login')
