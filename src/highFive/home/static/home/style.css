@@ -67,6 +67,14 @@ li {
 
 }
 
+.brown {
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgb(64, 34, 0);
+	background:   rgb(255, 255, 255);
+}
+
 .center {
 	text-align: center;
 }
