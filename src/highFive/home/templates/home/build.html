@@ -16,6 +16,15 @@
 
 		<h2>Build Your Bagel!</h2>
 			<p class="brown"><a href="checkout">Check Out</a></p>
+			{% if bagel_list %}
+
+				{% for bagel in bagel_list %}
+					<p class="brown"><a href="/home/{{ bagel.id }}/">{{ bagel.bagel_text }}</a></p>
+				{% endfor %}
+
+			{% else %}
+				<p> No Bagels Are Available!</p>
+			{% endif %}
 
 
 
