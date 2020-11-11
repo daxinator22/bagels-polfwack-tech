@@ -4,29 +4,29 @@ that he and his customers could access his beloved bagel shop online. Dan wanted
 contacted the best group of programmers to do this. This is why he contacted HighFive. That is exactly what we will do.
 
 Users and their Goals
--Customer: order bagels, log into their account, buy bagels with pre-loaded money
--Chef: view bagel orders in a queue
--Cashier: view orders, provide customers with orders
--Manager: view whole process, update inventory
+1- Customer: order bagels, log into their account, buy bagels with pre-loaded money
+2- Chef: view bagel orders in a queue
+3- Cashier: view orders, provide customers with orders
+4- Manager: view whole process, update inventory
 
 Functional
--Be able to order bagels, schmear and bagel sandwhiches
--Be able to control inventory, generate report of what inventory is needed
--Be able to log into accounts populated with money
--Have different accounts for customers, cashiers, chefs and managers
--Manager needs to be able to create accounts for cashiers and chefs
--Be able to choose a particular time to show up
+1- Be able to order bagels, schmear and bagel sandwhiches
+2- Be able to control inventory, generate report of what inventory is needed
+3- Be able to log into accounts populated with money
+4- Have different accounts for customers, cashiers, chefs and managers
+5- Manager needs to be able to create accounts for cashiers and chefs
+6- Be able to choose a particular time to show up
 
 Non-functional
--Customers should be able to choose to pick up orders at any hour during store hours
--Manager should have no limit in terms of adding to inventory
--Should be able to handle 20 customers logging in at the same time
--Should be able to handle the current number of employees (i.e. cashiers, chefs, managers) logged in at the same time
+1- Customers should be able to choose to pick up orders at any hour during store hours
+2- Manager should have no limit in terms of adding to inventory
+3- Should be able to handle 20 customers logging in at the same time
+4- Should be able to handle the current number of employees (i.e. cashiers, chefs, managers) logged in at the same time
 
 Future features
--Order is ready notifications
--Adding/removing items in queue
--Keep track of how many things are sold, analytics
+1- Order is ready notifications
+2- Adding/removing items in queue
+3- Keep track of how many things are sold, analytics
 
 Glossary
 -Inventory: the amount of bagels, schmears and other things are in storage
