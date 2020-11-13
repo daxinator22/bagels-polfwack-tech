@@ -17,20 +17,20 @@ from django.views import generic
 
 
 def index(request):
+
+    context = {
+
+    }
+    #return HttpResponse(template.render(context, request))
+    return render(request, 'home/index.html', context)
+
+def build(request):
+    #template = loader.get_template('home/orderBuild.html')
     bagel_list = Bagel.objects.order_by('-pub_date')[:5]
 
     template = loader.get_template('home/index.html')
     context = {
         'bagel_list': bagel_list,
-
-    }
-    #return HttpResponse(template.render(context, request))
-    return render(request, 'home/build.html', context)
-
-def build(request):
-    #template = loader.get_template('home/orderBuild.html')
-    context = {
-
     }
     return render(request, 'home/build.html', context)
 
