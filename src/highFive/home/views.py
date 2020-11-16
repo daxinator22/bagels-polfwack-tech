@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .models import Bagel
+from .models import foodItem
 
 from django.urls import reverse_lazy
 from django.views import generic
@@ -26,11 +26,9 @@ def index(request):
 
 def build(request):
     #template = loader.get_template('home/orderBuild.html')
-    bagel_list = Bagel.objects.order_by('-pub_date')[:5]
-
-    template = loader.get_template('home/index.html')
+    food_list = foodItem.objects.order_by('-price')
     context = {
-        'bagel_list': bagel_list,
+        'food_list': food_list,
     }
     return render(request, 'home/build.html', context)
 
