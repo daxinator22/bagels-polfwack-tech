@@ -11,6 +11,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import foodItem
+from django.contrib.auth.models import Group
 
 from django.urls import reverse_lazy
 from django.views import generic
@@ -39,7 +40,20 @@ def checkout(request):
     return render(request, 'home/checkout.html', context)
 
 
-# class SignUpView(generic.CreateView):
-#     form_class = UserCreationForm
-#     success_url = reverse_lazy('login')
-#     template_name = 'registration/signup.html'
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            group = Group.objects.get(name=request.POST.get('group'))
+            user = authenticate(username=username, password=raw_password)
+            user.groups.add(group)
+            login(request, user)
+            return redirect('/home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
+    # context = {}
+    # return render(request, 'home/signup.html', context)
