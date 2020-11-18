@@ -57,8 +57,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
-    # context = {}
-    # return render(request, 'home/signup.html', context)
 
 def logout_view(request):
     logout(request)
