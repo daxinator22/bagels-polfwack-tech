@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template.loader import get_template
 
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 from django.db.models import Count
@@ -18,9 +18,8 @@ from django.views import generic
 
 
 def index(request):
-
     context = {
-
+            'user': request.user,
     }
     #return HttpResponse(template.render(context, request))
     return render(request, 'home/index.html', context)
@@ -57,3 +56,7 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
     # context = {}
     # return render(request, 'home/signup.html', context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')

@@ -16,11 +16,15 @@
 	<body id="homepage">
 
 		<h2>High Five Bagels</h2>
+		{% if user.is_authenticated %}
+		<p>Welcome {{ user.username }}, <a href='/logout/'>logout</a></p>
+		{% else %}
+		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
+		{% endif %}
 		<p>To place an order, look below</p>
 		<ol>
 			<li><a href="build">Build Your Bagel!</a></li>
 		</ol>
-		<a href="/accounts/login/">Login Here!</a>
 
 
 
