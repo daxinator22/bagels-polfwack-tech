@@ -18,12 +18,12 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <p>Please select what you are:</p>
+                <input type="radio" id="customer" name="group" value="Customer">
+                <label for="customer">Customer</label><br>
                 <input type="radio" id="cashier" name="group" value="Cashier">
                 <label for="cashier">Cashier</label><br>
                 <input type="radio" id="chef" name="group" value="Chef">
                 <label for="chef">Chef</label><br>
-                <input type="radio" id="customer" name="group" value="Customer">
-                <label for="customer">Customer</label><br>
                 <input type="radio" id="manager" name="group" value="Manager">
                 <label for="manager">Manager</label><br><br>
                 <button type="submit">Sign up</button>
