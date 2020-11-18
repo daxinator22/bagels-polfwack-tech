@@ -3,18 +3,21 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 
 from django.contrib.auth import login, authenticate,logout
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm as SignUpForm
 # Create your views here.
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+
+from .forms import SignUpForm
 from .models import foodItem
 from django.contrib.auth.models import Group
 
 from django.urls import reverse_lazy
 from django.views import generic
+from django import forms
 
 
 def index(request):
@@ -41,7 +44,7 @@ def checkout(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -52,7 +55,7 @@ def signup(request):
             login(request, user)
             return redirect('/home')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
     # context = {}
     # return render(request, 'home/signup.html', context)
