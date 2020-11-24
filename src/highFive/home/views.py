@@ -37,6 +37,20 @@ def index(request):
             "Fill Order": "fill_order",
         })
 
+    elif group == "Chef":
+        urls.update({
+            "Check Queue": "queue",
+            "Fill Order": "fill_order",
+        })
+
+    elif group == "Manager":
+        urls.update({
+            "Check Queue": "queue",
+            "Fill Order": "fill_order",
+            "Inventory": "inventory",
+            "Create User": "signup",
+        })
+
     context = {
             'user': request.user,
             'group': group,
@@ -70,6 +84,12 @@ def fill_order(request):
         'user': request.user,
     }
     return render(request, 'home/fill_order.html', context)
+
+def inventory(request):
+    context = {
+        'user': request.user,
+    }
+    return render(request, 'home/inventory.html', context)
 
 def signup(request):
     if request.method == 'POST':

@@ -9,4 +9,5 @@ urlpatterns = [
     url('signup/', views.signup, name='signup'),
     path('queue/', views.queue, name='queue'),
     path('fill_order/', views.fill_order, name='fill_order'),
+    path('inventory/', views.inventory, name='inventory'),
 ]

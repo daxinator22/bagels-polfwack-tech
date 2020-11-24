@@ -6,7 +6,7 @@
 
 <html lang="en">
 	<head>
-		<title>Fill Order page!</title>
+		<title>Inventory page!</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
 
@@ -19,7 +19,7 @@
 		{% if user.is_authenticated %}
 		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
 		<p>You are current logged in as {{ group }}</p>
-		<p>This is the order page</p>
+		<p>This is the inventory page</p>
 		<p><a href="/">Home Page</a></p>
 		{% else %}
 		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>

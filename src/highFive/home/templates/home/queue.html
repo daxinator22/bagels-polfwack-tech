@@ -20,16 +20,10 @@
 		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
 		<p>You are current logged in as {{ group }}</p>
 		<p>This is the queue page</p>
-		{% for name, href in urls.items %}
-		<p><a href="{{ href }}">{{ name }}</a></p>
-		{% endfor %}
 		<p><a href="/">Home Page</a></p>
 		{% else %}
 		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
 		{% endif %}
-
-
-
 
 	</body>
 </html>
