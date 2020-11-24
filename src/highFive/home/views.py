@@ -21,8 +21,15 @@ from django import forms
 
 
 def index(request):
+    group = None
+    try:
+        group = request.user.groups.all()[0]
+    except IndexError:
+        group = "No Group"
+
     context = {
             'user': request.user,
+            'group': group,
     }
     #return HttpResponse(template.render(context, request))
     return render(request, 'home/index.html', context)
