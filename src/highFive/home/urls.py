@@ -7,4 +7,6 @@ urlpatterns = [
     path('build/', views.build, name='build'),
     path('build/checkout/', views.checkout, name='checkout'),
     url('signup/', views.signup, name='signup'),
+    path('queue/', views.queue, name='queue'),
+    path('fill_order/', views.fill_order, name='fill_order'),
 ]
