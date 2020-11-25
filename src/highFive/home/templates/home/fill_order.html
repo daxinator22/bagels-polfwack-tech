@@ -6,29 +6,24 @@
 
 <html lang="en">
 	<head>
-		<title>Welcome to the home page!</title>
+		<title>Fill Order page!</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
 
 	</head>
 
 
-	<body id="homepage">
+	<body>
 
 		<h2>High Five Bagels</h2>
 		{% if user.is_authenticated %}
 		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
 		<p>You are current logged in as {{ group }}</p>
-		{% for name, href in urls.items %}
-		<p><a href="{{ href }}">{{ name }}</a></p>
-		{% endfor %}
-		<p><a href="accounts/password_reset/">Reset Password</a></p>
+		<p>This is the order page</p>
+		<p><a href="/">Home Page</a></p>
 		{% else %}
 		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
 		{% endif %}
-
-
-
 
 	</body>
 </html>

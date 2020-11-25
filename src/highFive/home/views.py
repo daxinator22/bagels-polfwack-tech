@@ -21,8 +21,40 @@ from django import forms
 
 
 def index(request):
+    urls = {}
+    group = None
+    try:
+        group = str(request.user.groups.all()[0])
+    except IndexError:
+        group = "No Group"
+
+    if group == "Customer":
+        urls.update({"Build Your Bagel!": "build"})
+
+    elif group == "Cashier":
+        urls.update({
+            "Check Queue": "queue",
+            "Fill Order": "fill_order",
+        })
+
+    elif group == "Chef":
+        urls.update({
+            "Check Queue": "queue",
+            "Fill Order": "fill_order",
+        })
+
+    elif group == "Manager":
+        urls.update({
+            "Check Queue": "queue",
+            "Fill Order": "fill_order",
+            "Inventory": "inventory",
+            "Create User": "signup",
+        })
+
     context = {
             'user': request.user,
+            'group': group,
+            'urls': urls,
     }
     #return HttpResponse(template.render(context, request))
     return render(request, 'home/index.html', context)
@@ -41,6 +73,23 @@ def checkout(request):
     }
     return render(request, 'home/checkout.html', context)
 
+def queue(request):
+    context = {
+        'user': request.user,
+    }
+    return render(request, 'home/queue.html', context)
+
+def fill_order(request):
+    context = {
+        'user': request.user,
+    }
+    return render(request, 'home/fill_order.html', context)
+
+def inventory(request):
+    context = {
+        'user': request.user,
+    }
+    return render(request, 'home/inventory.html', context)
 
 def signup(request):
     if request.method == 'POST':
@@ -57,7 +106,3 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
-
-def logout_view(request):
-    logout(request)
-    return redirect('/')

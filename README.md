@@ -20,3 +20,9 @@ Unit testing instructions:
 
 System testing instructions: 
 * The whole system should be ready to be tested before the 2nd week of December.
+
+Test accounts
+customerTest: cust0mer!
+cashierTest: cashi3r!
+chefTest: ch3fP@ss
+managerTest: manag3r!
