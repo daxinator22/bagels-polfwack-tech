@@ -91,6 +91,17 @@ def inventory(request):
     }
     return render(request, 'home/inventory.html', context)
 
+
+def addMoney(request):
+    user = request.user
+    user.profile.currency = user.profile.currency + 1
+    user.save()
+    context = {
+        "user", user
+    }
+    #return render(request, 'home/index.html', context)
+    return redirect('/home')
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -105,4 +116,5 @@ def signup(request):
             return redirect('/home')
     else:
         form = SignUpForm()
+
     return render(request, 'registration/signup.html', {'form': form})

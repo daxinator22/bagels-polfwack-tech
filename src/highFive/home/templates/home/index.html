@@ -19,7 +19,8 @@
 		{% if user.is_authenticated %}
 		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
 		<p>You are current logged in as {{ group }}</p>
-		<p>Your current balance is: {{ Customer.funds }}</p>
+		<p>Your current balance is: {{ user.profile.currency }}</p>
+		<p><a href="addMoney">Add Money</a><p>
 		{% for name, href in urls.items %}
 		<p><a href="{{ href }}">{{ name }}</a></p>
 		{% endfor %}
