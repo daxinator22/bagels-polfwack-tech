@@ -19,8 +19,10 @@
 			{% if food_list %}
 
 				{% for foodItem in food_list %}
-					<p><a href="/home/{{ foodItem.id }}/">{{ foodItem.sub_type }} {{foodItem.type}}</a> : ${{foodItem.price}}</p>
+					<input type="checkbox" class="center" name="checked">{{ foodItem.sub_type }} {{foodItem.type}} : ${{foodItem.price}}</input>
+					<p></p>
 				{% endfor %}
+					<p><a href="addToOrder">Add To Order</a></p>
 
 			{% else %}
 				<p> No Items Are Available!</p>

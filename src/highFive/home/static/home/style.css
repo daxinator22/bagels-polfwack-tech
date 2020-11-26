@@ -19,6 +19,12 @@ div .login {
 	color: grey;
 }
 
+.menuItem {
+	text-align: center;
+	font-family: 'helvetica neue', helvetica, sans-serif;
+	color: grey;
+}
+
 li {
 	text-align: center;
 	font-family: 'helvetica neue', helvetica, sans-serif;

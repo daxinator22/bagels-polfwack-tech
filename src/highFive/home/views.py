@@ -102,6 +102,12 @@ def addMoney(request):
     #return render(request, 'home/index.html', context)
     return redirect('/home')
 
+def addToOrder(request):
+    user = request.user
+    checked = request.POST.getlist('checked')
+    print(len(checked))
+    return redirect('/build')
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)

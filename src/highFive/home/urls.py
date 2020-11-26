@@ -11,5 +11,6 @@ urlpatterns = [
     path('fill_order/', views.fill_order, name='fill_order'),
     path('inventory/', views.inventory, name='inventory'),
     path('addMoney/', views.addMoney, name='addMoney'),
+    path('build/addToOrder/', views.addToOrder, name='addToOrder'),
 
 ]
