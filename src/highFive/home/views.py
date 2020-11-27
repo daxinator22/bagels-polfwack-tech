@@ -110,17 +110,10 @@ def addMoney(request):
     context = {
         "user", user
     }
-    #return render(request, 'home/index.html', context)
+    
     return redirect('/home')
 
-def addToOrder(request):
-    print("Processing Order")
-    if request.method == 'POST':
-        form = CheckForm(request.POST)
-        if form.is_valid():
-            print("Processing Form")
 
-    return redirect('/build')
 
 def signup(request):
     if request.method == 'POST':
