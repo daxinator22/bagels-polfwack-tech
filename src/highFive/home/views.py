@@ -12,7 +12,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
 
-from .models import foodItem
+from .models import foodItem, Order
 from django.contrib.auth.models import Group
 
 from django.urls import reverse_lazy
@@ -71,15 +71,27 @@ def build(request):
     if request.method == 'POST':
         print("Doing Stuff")
         form = CheckForm(request.POST)
+        print("Valid: ", form.is_valid())
+        print("Errors: ", form.errors)
         if form.is_valid():
-            print("Processing Form")
+            checked = request.POST.getlist('checked')
+            #print(checked)
+            order = request.user.profile.order
+            for item in checked:
+                order.bagels.append(item)
+
+            print(order.bagels)
+
 
         return redirect('/build')
     else:
         return render(request, 'home/build.html', context)
 
 def checkout(request):
+    user = request.user
+    order_list = user.profile.order.bagels
     context = {
+        'order_list': order_list,
 
     }
     return render(request, 'home/checkout.html', context)
@@ -110,7 +122,7 @@ def addMoney(request):
     context = {
         "user", user
     }
-    
+
     return redirect('/home')
 
 

@@ -23,7 +23,7 @@
 				{{ form.as_p }}
 
 				{% for foodItem in food_list %}
-					<input type="checkbox" class="center" value="{{foodItem}}">{{ foodItem.sub_type }} {{foodItem.type}} : ${{foodItem.price}}</input>
+					<input type="checkbox" class="center" value={{foodItem.sub_type}} name="checked" id={{foodItem}}>{{ foodItem.sub_type }} {{foodItem.type}} : ${{foodItem.price}}</input>
 					<p></p>
 				{% endfor %}
 					<p><a href="addToOrder">Add To Order</a></p>
