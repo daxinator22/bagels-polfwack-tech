@@ -11,13 +11,15 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
-from .forms import SignUpForm
+
 from .models import foodItem
 from django.contrib.auth.models import Group
 
 from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
+from .forms import SignUpForm, CheckForm
+
 
 
 def index(request):
@@ -61,11 +63,20 @@ def index(request):
 
 def build(request):
     #template = loader.get_template('home/orderBuild.html')
+    print("Processing Order: ", request.method)
     food_list = foodItem.objects.order_by('-price')
     context = {
         'food_list': food_list,
     }
-    return render(request, 'home/build.html', context)
+    if request.method == 'POST':
+        print("Doing Stuff")
+        form = CheckForm(request.POST)
+        if form.is_valid():
+            print("Processing Form")
+
+        return redirect('/build')
+    else:
+        return render(request, 'home/build.html', context)
 
 def checkout(request):
     context = {
@@ -103,9 +114,12 @@ def addMoney(request):
     return redirect('/home')
 
 def addToOrder(request):
-    user = request.user
-    checked = request.POST.getlist('checked')
-    print(len(checked))
+    print("Processing Order")
+    if request.method == 'POST':
+        form = CheckForm(request.POST)
+        if form.is_valid():
+            print("Processing Form")
+
     return redirect('/build')
 
 def signup(request):

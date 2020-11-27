@@ -18,11 +18,17 @@
 			<p class="brown"><a href="checkout">Check Out</a></p>
 			{% if food_list %}
 
+			<form method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+
 				{% for foodItem in food_list %}
-					<input type="checkbox" class="center" name="checked">{{ foodItem.sub_type }} {{foodItem.type}} : ${{foodItem.price}}</input>
+					<input type="checkbox" class="center" value="{{foodItem}}">{{ foodItem.sub_type }} {{foodItem.type}} : ${{foodItem.price}}</input>
 					<p></p>
 				{% endfor %}
 					<p><a href="addToOrder">Add To Order</a></p>
+					<input type="submit" value="Add To Order"></input>
+			</form>
 
 			{% else %}
 				<p> No Items Are Available!</p>
