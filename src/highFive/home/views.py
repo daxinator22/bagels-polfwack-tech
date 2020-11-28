@@ -97,6 +97,7 @@ def checkout(request):
     return render(request, 'home/checkout.html', context)
 
 def queue(request):
+
     context = {
         'user': request.user,
     }
