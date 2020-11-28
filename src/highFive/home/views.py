@@ -105,9 +105,16 @@ def queue(request):
     return render(request, 'home/queue.html', context)
 
 def fill_order(request, order_id):
+    item_string = Order.objects.all()[int(order_id) - 1].items
+    item_list = item_string.split(',')
+    item_obj = list()
+    for item in item_list:
+        item_obj.append(foodItem.objects.filter(id=item)[0])
+
     context = {
         'user': request.user,
         'order': get_object_or_404(Order, pk=order_id),
+        'items': item_obj,
     }
     return render(request, 'home/fill_order.html', context)
 

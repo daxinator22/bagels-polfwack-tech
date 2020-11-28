@@ -20,6 +20,11 @@
 		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
 		<p>You are current logged in as {{ group }}</p>
 		<h3>Order #{{ order.id }}</h3>
+		<ul>
+		{% for item in items %}
+			<li>{{ item.type }}: {{ item.sub_type }}</li>
+		{% endfor %}
+		</ul>	
 		<p><a href='/fill_order/{{ order.id }}/isMade/'>Is made</a>: {{ order.isMade }}</p>
 		<p><a href='/fill_order/{{ order.id }}/isFilled/'>Is filled</a>: {{ order.isFilled }}</p>
 		<p><a href="/">Home Page</a></p>
