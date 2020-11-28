@@ -8,7 +8,9 @@ urlpatterns = [
     path('build/checkout/', views.checkout, name='checkout'),
     url('signup/', views.signup, name='signup'),
     path('queue/', views.queue, name='queue'),
-    path('fill_order/', views.fill_order, name='fill_order'),
+    path('fill_order/<order_id>/', views.fill_order, name='fill_order'),
+    path('fill_order/<order_id>/isMade/', views.isMade, name='isMade'),
+    path('fill_order/<order_id>/isFilled/', views.isFilled, name='isFilled'),
     path('inventory/', views.inventory, name='inventory'),
     path('addMoney/', views.addMoney, name='addMoney'),
 
