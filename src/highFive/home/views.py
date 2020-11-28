@@ -105,7 +105,7 @@ def queue(request):
     return render(request, 'home/queue.html', context)
 
 def fill_order(request, order_id):
-    item_string = Order.objects.all()[int(order_id) - 1].items
+    item_string = Order.objects.filter(id=int(order_id))[0].items
     item_list = item_string.split(',')
     item_obj = list()
     for item in item_list:
