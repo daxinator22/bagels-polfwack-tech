@@ -113,9 +113,13 @@ def fill_order(request, order_id):
 
 def isMade(request, order_id):
     order = Order.objects.all()[int(order_id) - 1]
-    order.isMade = True
-    order.save()
-    return redirect(f'/fill_order/{ order_id }')
+    if order.isFilled:
+        order.delete()
+        return redirect('/queue')
+    else:
+        order.isMade = True
+        order.save()
+        return redirect(f'/fill_order/{ order_id }')
 
 def isFilled(request, order_id):
     order = Order.objects.all()[int(order_id) - 1]
