@@ -97,17 +97,36 @@ def checkout(request):
     return render(request, 'home/checkout.html', context)
 
 def queue(request):
-
+    order_list = Order.objects.all()
     context = {
         'user': request.user,
+        'order_list': order_list,
     }
     return render(request, 'home/queue.html', context)
 
-def fill_order(request):
+def fill_order(request, order_id):
     context = {
         'user': request.user,
+        'order': get_object_or_404(Order, pk=order_id),
     }
     return render(request, 'home/fill_order.html', context)
+
+def isMade(request, order_id):
+    order = Order.objects.all()[int(order_id) - 1]
+    order.isMade = True
+    order.save()
+    return redirect(f'/fill_order/{ order_id }')
+
+def isFilled(request, order_id):
+    order = Order.objects.all()[int(order_id) - 1]
+    if order.isMade:
+        order.delete()
+        return redirect('/queue')
+    
+    else:
+        order.isFilled = True
+        order.save()
+        return redirect(f'/fill_order/{ order_id }')
 
 def inventory(request):
     context = {
