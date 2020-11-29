@@ -3,6 +3,11 @@
 	color: white;
 }
 
+a {
+	text-align: center;
+
+}
+
 h2 {
 	text-align: center;
 	color: RoyalBlue;
@@ -32,8 +37,7 @@ li {
 }
 
 #homepage{
-     background: url("/static/home/bakery.jpg") 50% 0 no-repeat fixed;
-		 background-size: 1000px 600px;
+     
      color: grey;
      height: 650px;
      padding: 100px 0 0 0;

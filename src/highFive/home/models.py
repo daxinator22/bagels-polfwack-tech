@@ -33,6 +33,7 @@ class Order(models.Model):
     items = models.CharField(max_length=200, default='none')
     isMade = models.BooleanField(default=False)
     isFilled = models.BooleanField(default=False)
+    bagels = []
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

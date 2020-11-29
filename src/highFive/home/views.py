@@ -61,6 +61,12 @@ def index(request):
     #return HttpResponse(template.render(context, request))
     return render(request, 'home/index.html', context)
 
+def confirmation(request):
+    context = {
+        'user': request.user
+    }
+    return render(request, 'home/confirmation.html', context)
+
 def build(request):
     #template = loader.get_template('home/orderBuild.html')
     print("Processing Order: ", request.method)
@@ -69,16 +75,14 @@ def build(request):
         'food_list': food_list,
     }
     if request.method == 'POST':
-        print("Doing Stuff")
         form = CheckForm(request.POST)
-        print("Valid: ", form.is_valid())
-        print("Errors: ", form.errors)
         if form.is_valid():
             checked = request.POST.getlist('checked')
-            #print(checked)
             order = request.user.profile.order
             for item in checked:
-                order.bagels.append(item)
+                currFoodItem = foodItem.objects.get(sub_type=item)
+                print("CurrFoodItem: ", currFoodItem.type)
+                order.bagels.append(currFoodItem)
 
             print(order.bagels)
 
@@ -90,10 +94,27 @@ def build(request):
 def checkout(request):
     user = request.user
     order_list = user.profile.order.bagels
+    total_price = 0
+    for item in order_list:
+        total_price += item.price
+
     context = {
         'order_list': order_list,
+        'total_price': total_price,
+        'user': user
 
     }
+    if request.method == 'POST':
+        if user.profile.currency > total_price:
+            for item in order_list:
+                item.inv_count -= 1
+                item.save()
+
+            user.profile.currency = user.profile.currency - total_price
+            user.profile.order.bagels.clear()
+            user.save()
+            return render(request, 'home/confirmation.html', context)
+
     return render(request, 'home/checkout.html', context)
 
 def queue(request):

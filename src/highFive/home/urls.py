@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('build/', views.build, name='build'),
     path('build/checkout/', views.checkout, name='checkout'),
+    path('build/checkout/confirmation', views.confirmation, name='confirmation'),
     url('signup/', views.signup, name='signup'),
     path('queue/', views.queue, name='queue'),
     path('fill_order/<order_id>/', views.fill_order, name='fill_order'),
