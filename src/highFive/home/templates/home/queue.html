@@ -21,7 +21,7 @@
 		<p>You are current logged in as {{ group }}</p>
 		<p>This is the queue page</p>
 		{% for order in order_list %}
-		<p><a href='/fill_order/{{ order.id }}/'>{{ order.items }}</a></p>
+		<p><a href='/fill_order/{{ order.id }}/'>Order #{{ order.id }}</a></p>
 		{% endfor %}
 		<p><a href="/">Home Page</a></p>
 		{% else %}

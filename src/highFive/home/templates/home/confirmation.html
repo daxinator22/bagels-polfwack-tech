@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+
+<!-- Changes you make to this file will not be reviewed by the grader -->
+
+<html lang="en">
+	<head>
+		<title>Welcome to the home page!</title>
+		<meta charset="utf-8">
+		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+
+	</head>
+
+
+	<body>
+
+		<h2>Your Order Has Been Placed!</h2>
+      <p>Your Balance: {{ user.profile.currency }}</p>
+      <a href='/home'>Return Home</a>
+
+
+
+
+
+	</body>
+</html>
