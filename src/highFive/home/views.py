@@ -105,11 +105,15 @@ def checkout(request):
 
     }
     if request.method == 'POST':
+        items = ''
         if user.profile.currency > total_price:
             for item in order_list:
                 item.inv_count -= 1
                 item.save()
+                items = items + f'{str(item.id)},'
 
+            o = Order(items=items)
+            o.save()
             user.profile.currency = user.profile.currency - total_price
             user.profile.order.bagels.clear()
             user.save()
@@ -130,7 +134,8 @@ def fill_order(request, order_id):
     item_list = item_string.split(',')
     item_obj = list()
     for item in item_list:
-        item_obj.append(foodItem.objects.filter(id=item)[0])
+        if item != '':
+            item_obj.append(foodItem.objects.filter(id=item)[0])
 
     context = {
         'user': request.user,
