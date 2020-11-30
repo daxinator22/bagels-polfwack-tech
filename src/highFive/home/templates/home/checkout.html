@@ -15,14 +15,20 @@
 	<body>
 
 		<h2>Check Out!</h2>
-		<a href='/home'>Return Home</a>
+
+		<div>
+			<a href='/home' >Return Home</a>
+		</div>
+		<h3 class="center">Current Items in cart:</h3>
 			{% for item in order_list %}
 				<p>{{ item.type }} {{ item.sub_type}} ${{ item.price }}</p>
 			{% endfor %}
 			<h3>Total Price: {{ total_price }}   Current Balance: {{user.profile.currency}}</p>
 			<form method="post">
 				{% csrf_token %}
-				<input type="submit" value="Purchase" method="post"></input>
+				<div>
+					<input type="submit" value="Purchase" method="post"></input>
+			</div>
 			</form>
 
 

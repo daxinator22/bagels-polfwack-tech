@@ -15,3 +15,7 @@ class SignUpForm(UserCreationForm):
 
 class CheckForm(forms.Form):
     isChecked = forms.BooleanField(required=False)
+
+
+class addMoneyForm(forms.Form):
+    amount = forms.IntegerField(max_value=1000)

@@ -15,20 +15,24 @@
 	<body>
 
 		<h2>Build Your Bagel!</h2>
-		<a href='/home'>Return Home</a>
+		<div>
+			<a href='/home' >Return Home</a>
+		</div>
 			<p class="brown"><a href="checkout">Check Out</a></p>
 			{% if food_list %}
 
 			<form method="post">
 				{% csrf_token %}
 				{{ form.as_p }}
+				<div>
 
 				{% for foodItem in food_list %}
 					<input type="checkbox" class="center" value={{foodItem.sub_type}} name="checked" id={{foodItem}}>{{ foodItem.sub_type }} {{foodItem.type}} : ${{foodItem.price}}</input>
 					<p></p>
 				{% endfor %}
-					<p><a href="addToOrder">Add To Order</a></p>
-					<input type="submit" value="Add To Order"></input>
+				
+					<input type="submit" value="Add To Order" class="menuItem"></input>
+				</div>
 			</form>
 
 			{% else %}

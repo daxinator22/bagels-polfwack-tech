@@ -18,7 +18,7 @@ from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
-from .forms import SignUpForm, CheckForm
+from .forms import SignUpForm, CheckForm, addMoneyForm
 
 
 
@@ -174,13 +174,22 @@ def inventory(request):
 
 def addMoney(request):
     user = request.user
-    user.profile.currency = user.profile.currency + 1
-    user.save()
     context = {
-        "user", user
+        'user': user
     }
+    if request.method == 'POST':
+        form = addMoneyForm(request.POST)
+        print("Errors: ", form.errors)
+        print("Valid: ", form.is_valid())
+        if form.is_valid():
+            amount = form.cleaned_data.get('amount')
+            user.profile.currency = user.profile.currency + amount
+            user.save()
 
-    return redirect('/home')
+
+
+
+    return render(request, 'home/addMoney.html', context)
 
 
 

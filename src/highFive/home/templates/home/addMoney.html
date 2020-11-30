@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<!-- Changes you make to this file will not be reviewed by the grader -->
+
+<html lang="en">
+	<head>
+		<title>Welcome to the home page!</title>
+		<meta charset="utf-8">
+		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+
+	</head>
+
+
+	<body id="homepage">
+
+		<h2>Add Money</h2>
+		<p>Your current balance is: {{ user.profile.currency }}</p>
+
+		<form method='post'>
+			{% csrf_token %}
+      {{ form.as_p }}
+			<div>
+				<p>Add Money To Your Account</p>
+				<input type="number" id="amount" name='amount' value="$">Amount</input>
+				<input type="submit" value="Add Money"></input>
+		    </div>
+		</form>
+    <div>
+      <p></p>
+			<a href='/home' >Return Home</a>
+		</div>
+
+
+
+
+
+	</body>
+</html>
