@@ -20,6 +20,41 @@
 		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
 		<p>You are current logged in as {{ group }}</p>
 		<p>This is the inventory page</p>
+		<h3>Bagels</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Plain</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Onion</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Cinnamon Raisin</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Sesame</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Cheesy</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Pumpernickel</td>
+					<td>5</td>
+				</tr>
+			</tbody>
+		</table>
 		<p><a href="/">Home Page</a></p>
 		{% else %}
 		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
