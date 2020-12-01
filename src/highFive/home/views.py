@@ -217,12 +217,18 @@ def inventory(request):
     }
     if request.method == 'POST':
         form = InventoryForm(request.POST)
+        print('VALID: ', form.is_valid())
         if form.is_valid():
             item = request.POST.get('item')
             type = request.POST.get('type')
             amount = request.POST.get('amount')
             amount = int(amount)
-            food = foodItem.objects.get(type=type, sub_type=item)
+            print(type, ' TYPE')
+            print(type == "")
+            if type == "":
+                food = Ingredients.objects.get(type=type)
+            else:
+                food = foodItem.objects.get(type=type, sub_type=item)
             food.add_to_inv(amount)
             food.save()
             foodItem.objects.update()
