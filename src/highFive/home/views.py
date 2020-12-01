@@ -31,7 +31,10 @@ def index(request):
         group = "No Group"
 
     if group == "Customer":
-        urls.update({"Build Your Bagel!": "build"})
+        urls.update({
+            "Build Your Bagel!": "build",
+            'Add Money': 'addMoney',
+        })
 
     elif group == "Cashier":
         urls.update({
