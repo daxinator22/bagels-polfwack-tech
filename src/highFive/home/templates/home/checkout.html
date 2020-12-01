@@ -23,6 +23,14 @@
 			{% for item in order_list %}
 				<p>{{ item.type }} {{ item.sub_type}} ${{ item.price }}</p>
 			{% endfor %}
+			<h3 class="center">Sandwiches</h3>
+			{% for sandwich in sandwich_list %}
+				<p class="sandwich">Custom Sandwich With:</p>
+				{% for item in sandwich.ingredients %}
+					<p>{{ item.type }} ${{ item.price }}</p>
+				{% endfor %}
+			{% endfor %}
+
 			<h3>Total Price: {{ total_price }}   Current Balance: {{user.profile.currency}}</p>
 			<form method="post">
 				{% csrf_token %}
