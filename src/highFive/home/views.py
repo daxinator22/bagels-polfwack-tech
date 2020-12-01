@@ -18,7 +18,8 @@ from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
-from .forms import SignUpForm, CheckForm, addMoneyForm
+from .forms import SignUpForm, CheckForm, addMoneyForm, InventoryForm
+from django.contrib import messages
 
 
 
@@ -214,8 +215,18 @@ def inventory(request):
         'drink_list' : drink_list,
         'ing_list' : ing_list,
     }
+    if request.method == 'POST':
+        form = InventoryForm(request.POST)
+        if form.is_valid():
+            item = request.POST.get('item')
+            type = request.POST.get('type')
+            amount = request.POST.get('amount')
+            amount = int(amount)
+            food = foodItem.objects.get(type=type, sub_type=item)
+            food.add_to_inv(amount)
+            food.save()
+            foodItem.objects.update()
     return render(request, 'home/inventory.html', context)
-
 
 def addMoney(request):
     user = request.user
