@@ -12,7 +12,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
 
-from .models import foodItem, Order, Ingredients
+from .models import foodItem, Order, Ingredients, BagelSandwich
 from django.contrib.auth.models import Group
 
 from django.urls import reverse_lazy
@@ -72,19 +72,30 @@ def build(request):
     #template = loader.get_template('home/orderBuild.html')
     print("Processing Order: ", request.method)
     food_list = foodItem.objects.order_by('-price')
+    ingredient_list = Ingredients.objects.all()
 
     context = {
         'food_list': food_list,
+        'ingredient_list': ingredient_list
     }
     if request.method == 'POST':
         form = CheckForm(request.POST)
         if form.is_valid():
             checked = request.POST.getlist('checked')
+            ingrChecked = request.POST.getlist('ingrChecked')
             order = request.user.profile.order
             for item in checked:
-                currFoodItem = foodItem.objects.get(sub_type=item)
+                currFoodItem = foodItem.objects.get(item_id=item)
                 print("CurrFoodItem: ", currFoodItem.type)
                 order.bagels.append(currFoodItem)
+            sandwich = BagelSandwich()
+            for item in ingrChecked:
+                currIngr = Ingredients.objects.get(type=item)
+                sandwich.addItem(currIngr)
+                sandwich.save()
+            order.sandwiches.append(sandwich)
+            
+
 
             print(order.bagels)
 
@@ -93,16 +104,28 @@ def build(request):
     else:
         return render(request, 'home/build.html', context)
 
+def clearOrder(request):
+    user = request.user
+    user.profile.order.bagels.clear()
+    user.profile.order.sandwiches.clear()
+    user.save()
+    return redirect('/home/build/checkout')
+
 def checkout(request):
     user = request.user
     order_list = user.profile.order.bagels
+    sandwich_list = user.profile.order.sandwiches
     total_price = 0
     for item in order_list:
         total_price += item.price
+    for sandwich in sandwich_list:
+        for item in sandwich.ingredients:
+            total_price += item.price
 
     context = {
         'order_list': order_list,
         'total_price': total_price,
+        'sandwich_list': sandwich_list,
         'user': user
 
     }
@@ -110,14 +133,20 @@ def checkout(request):
         items = ''
         if user.profile.currency > total_price:
             for item in order_list:
-                item.inv_count -= 1
+                item.removeFromInv(1)
                 item.save()
                 items = items + f'{str(item.id)},'
+            for sandwich in sandwich_list:
+                for item in sandwich.ingredients:
+                    item.removeFromInv(1)
+                    item.save()
+
 
             o = Order(items=items)
             o.save()
             user.profile.currency = user.profile.currency - total_price
             user.profile.order.bagels.clear()
+            user.profile.order.sandwiches.clear()
             user.save()
             return render(request, 'home/confirmation.html', context)
 

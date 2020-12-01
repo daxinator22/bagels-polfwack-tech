@@ -46,6 +46,11 @@ li {
      padding: 100px 0 0 0;
      }
 
+.sandwich{
+	color: red;
+	text-align: center:
+}
+
 .stuff-box {
 	font-family: 'helvetica neue', helvetica, sans-serif;
 	color: grey;
@@ -113,6 +118,7 @@ li {
 div {
    text-align: center;
 }
+<<<<<<< HEAD
 table.center {
   margin-left: auto;
   margin-right: auto;
@@ -144,3 +150,5 @@ th, td {
 table {
     width: 400px;
 }
+=======
+>>>>>>> d1105b1a73789f17d6e32fe7363e3cba01cc3abf

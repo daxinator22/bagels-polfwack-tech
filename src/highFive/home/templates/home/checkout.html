@@ -18,12 +18,27 @@
 
 		<div>
 			<a href='/home' >Return Home</a>
+			<p>---------------</p>
+			<a href='/clearOrder'>Clear Order</a>
+			<p>---------------</p>
+			<a href='/home/build'>Add To Your Order</a>
 		</div>
 		<h3 class="center">Current Items in cart:</h3>
 			{% for item in order_list %}
 				<p>{{ item.type }} {{ item.sub_type}} ${{ item.price }}</p>
 			{% endfor %}
-			<h3>Total Price: {{ total_price }}   Current Balance: {{user.profile.currency}}</p>
+			<h3 class="center">Sandwiches:</h3>
+			{% for sandwich in sandwich_list %}
+				{% if sandwich.ingredients %}
+					<p class="sandwich">Custom Sandwich With:</p>
+					{% for item in sandwich.ingredients %}
+						<p>{{ item.type }} ${{ item.price }}</p>
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+			<div>
+				<h3>Total Price: {{ total_price }}   Current Balance: {{user.profile.currency}}</h3>
+			</div>
 			<form method="post">
 				{% csrf_token %}
 				<div>
