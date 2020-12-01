@@ -95,18 +95,17 @@
                     <tbody>
                         {% for ing_item in ing_list %}
                         <tr>
-                            <td class="left">{{ ing_item.sub_type }}</td>
+                            <td class="left">{{ ing_item.type }}</td>
                             <td>{{ ing_item.inv_count }}</td>
+                            <td>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="type" value="{{ ing_item.type }}" />
+                                    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </td>
                         </tr>
-                        <td>
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="item" value="{{ ing_item.sub_type }}" />
-                                <input type="hidden" name="type" value="{{ ing_item.type }}" />
-                                <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
-                                <button type="submit">Submit</button>
-                            </form>
-                        </td>
                         {% endfor %}
                     </tbody>
                 </table>
