@@ -18,12 +18,12 @@
 		<h2>High Five Bagels</h2>
 		{% if user.is_authenticated %}
 		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
-		<p>You are current logged in as {{ group }}</p>
+		<p>You are current logged in as a {{ group }}</p>
 		<p>Your current balance is: {{ user.profile.currency }}</p>
 		<div>
 			<a href="addMoney">Add Money To Your Account</a>
 		</div>
-		
+
 		{% for name, href in urls.items %}
 		<p><a href="{{ href }}">{{ name }}</a></p>
 		{% endfor %}

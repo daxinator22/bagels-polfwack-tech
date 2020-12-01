@@ -71,6 +71,7 @@ def build(request):
     #template = loader.get_template('home/orderBuild.html')
     print("Processing Order: ", request.method)
     food_list = foodItem.objects.order_by('-price')
+
     context = {
         'food_list': food_list,
     }
