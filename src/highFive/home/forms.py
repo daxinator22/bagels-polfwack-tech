@@ -20,7 +20,11 @@ class CheckForm(forms.Form):
 class addMoneyForm(forms.Form):
     amount = forms.IntegerField(max_value=1000)
 
-class InventoryForm(forms.Form):
+class FoodItemForm(forms.Form):
     item = forms.CharField(widget=forms.HiddenInput())
+    type = forms.CharField(widget=forms.HiddenInput())
+    amount = forms.IntegerField()
+
+class IngredientsForm(forms.Form):
     type = forms.CharField(widget=forms.HiddenInput())
     amount = forms.IntegerField()
