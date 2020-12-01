@@ -133,12 +133,12 @@ def checkout(request):
         items = ''
         if user.profile.currency > total_price:
             for item in order_list:
-                item.removeFromInv(1)
+                item.remove_from_inv(1)
                 item.save()
                 items = items + f'{str(item.id)},'
             for sandwich in sandwich_list:
                 for item in sandwich.ingredients:
-                    item.removeFromInv(1)
+                    item.remove_from_inv(1)
                     item.save()
 
 
