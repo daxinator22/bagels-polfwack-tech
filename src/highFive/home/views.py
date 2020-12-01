@@ -12,7 +12,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
 
-from .models import foodItem, Order
+from .models import foodItem, Order, Ingredients
 from django.contrib.auth.models import Group
 
 from django.urls import reverse_lazy
@@ -167,8 +167,23 @@ def isFilled(request, order_id):
         return redirect(f'/fill_order/{ order_id }')
 
 def inventory(request):
+    bagel_list = foodItem.objects.exclude(
+        type__in = ['Sandwich', 'Shmear', 'Drink'],
+
+    )
+    shmear_list = foodItem.objects.exclude(
+        type__in = ['Sandwich', 'Drink', 'Bagel'],
+    )
+    drink_list = foodItem.objects.exclude(
+        type__in = ['Sandwich', 'Bagel', 'Shmear'],
+    )
+    ing_list = Ingredients.objects.all()
     context = {
         'user': request.user,
+        'bagel_list' : bagel_list,
+        'shmear_list' : shmear_list,
+        'drink_list' : drink_list,
+        'ing_list' : ing_list,
     }
     return render(request, 'home/inventory.html', context)
 

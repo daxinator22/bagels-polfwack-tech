@@ -13,7 +13,10 @@ class foodItem(models.Model):
     price = models.DecimalField(decimal_places=2,max_digits=10)
     def __str__(self):
         return self.sub_type
-
+    def addToInv(self, amount):
+        self.inv_count += amount
+    def removeFromInv(self, amount):
+        self.inv_count -= amount
 
 
 
@@ -23,6 +26,10 @@ class Ingredients(models.Model):
     inv_count = models.IntegerField(default=0)
     def __str__(self):
         return self.type
+    def addToInv(self, amount):
+        self.inv_count += amount
+    def removeFromInv(self, amount):
+        self.inv_count -= amount
 
 
 class BagelSandwich(models.Model):

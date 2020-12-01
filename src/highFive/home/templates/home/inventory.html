@@ -23,133 +23,81 @@
 		<div class="row">
 			<div class="column">
 				<h3>Bagels</h3>
-				<table class="center">
-					<thead>
+                <table class="center">
+                    <thead>
 						<tr>
 							<th>Item</th>
 							<th>Amount</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Plain</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Onion</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Cinnamon Raisin</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Sesame</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Cheesy</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Pumpernickel</td>
-							<td>5</td>
-						</tr>
-					</tbody>
-				</table>
+                    <tbody>
+                        {% for food_item in bagel_list %}
+                        <tr>
+                            <td class="left">{{ food_item.sub_type }} {{ food_item.type }}</td>
+                            <td>{{ food_item.inv_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 			</div>
 			<div class="column">
 				<h3>Schmears</h3>
-				<table class="center">
-					<thead>
+                <table class="center">
+                    <thead>
 						<tr>
 							<th>Item</th>
 							<th>Amount</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Plain</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Honey Nut</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Strawberry</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>French Onion</td>
-							<td>5</td>
-						</tr>
-					</tbody>
-				</table>
+                    <tbody>
+                        {% for food_item in shmear_list %}
+                        <tr>
+                            <td class="left">{{ food_item.sub_type }} {{ food_item.type }}</td>
+                            <td>{{ food_item.inv_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 			</div>
 		</div>
 		<div class="row">
 			<div class="column">
-				<h3>Sandwich Toppings</h3>
-				<table class="center">
-					<thead>
+                <h3>Sandwich Toppings</h3>
+                <table class="center">
+                    <thead>
 						<tr>
 							<th>Item</th>
 							<th>Amount</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Bacon</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Eggs</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Cheese</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Sausage</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Avocado</td>
-							<td>5</td>
-						</tr>
-					</tbody>
-				</table>
+                    <tbody>
+                        {% for ing_item in ing_list %}
+                        <tr>
+                            <td class="left">{{ ing_item.sub_type }} {{ ing_item.type }}</td>
+                            <td>{{ ing_item.inv_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 			</div>
 			<div class="column">
 				<h3>Beverages</h3>
-				<table class="center">
-					<thead>
+                <table class="center">
+                    <thead>
 						<tr>
 							<th>Item</th>
 							<th>Amount</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>Coffee</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Milk</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Orange Juice</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>Water Bottles</td>
-							<td>5</td>
-						</tr>
-					</tbody>
-				</table>
+                    <tbody>
+                        {% for food_item in drink_list %}
+                        <tr>
+                            <td class="left">{{ food_item.sub_type }} {{ food_item.type }}</td>
+                            <td>{{ food_item.inv_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 			</div>
 		</div>
 		<p><a href="/">Home Page</a></p>
