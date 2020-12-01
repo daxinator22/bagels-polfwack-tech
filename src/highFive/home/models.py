@@ -10,9 +10,9 @@ import random
 class foodItem(models.Model):
     type = models.CharField(max_length=200)
     sub_type = models.CharField(max_length=200)
-    inv_count = models.IntegerField(default=random.randint(1000, 140000))
+    inv_count = models.IntegerField()
     price = models.DecimalField(decimal_places=2,max_digits=10)
-    #item_id = models.IntegerField()
+    item_id = models.IntegerField(default=random.randint(1000, 140000))
     def __str__(self):
         return self.sub_type
     def addToInv(self, amount):

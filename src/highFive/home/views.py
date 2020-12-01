@@ -84,7 +84,7 @@ def build(request):
             ingrChecked = request.POST.getlist('ingrChecked')
             order = request.user.profile.order
             for item in checked:
-                currFoodItem = foodItem.objects.get(sub_type=item)
+                currFoodItem = foodItem.objects.get(item_id=item)
                 print("CurrFoodItem: ", currFoodItem.type)
                 order.bagels.append(currFoodItem)
             sandwich = BagelSandwich()
@@ -93,6 +93,7 @@ def build(request):
                 sandwich.addItem(currIngr)
                 sandwich.save()
             order.sandwiches.append(sandwich)
+            
 
 
             print(order.bagels)
@@ -101,6 +102,13 @@ def build(request):
         return redirect('/build')
     else:
         return render(request, 'home/build.html', context)
+
+def clearOrder(request):
+    user = request.user
+    user.profile.order.bagels.clear()
+    user.profile.order.sandwiches.clear()
+    user.save()
+    return redirect('/home/build/checkout')
 
 def checkout(request):
     user = request.user
