@@ -18,7 +18,8 @@ from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
-from .forms import SignUpForm, CheckForm, addMoneyForm
+from .forms import SignUpForm, CheckForm, addMoneyForm, FoodItemForm, IngredientsForm
+from django.contrib import messages
 
 
 
@@ -39,7 +40,7 @@ def index(request):
     elif group == "Cashier":
         urls.update({
             "Check Queue": "queue",
-            "Fill Order": "fill_order",
+            #"Fill Order": "fill_order",
         })
 
     elif group == "Chef":
@@ -51,7 +52,7 @@ def index(request):
     elif group == "Manager":
         urls.update({
             "Check Queue": "queue",
-            "Fill Order": "fill_order",
+            #"Fill Order": "fill_order",
             "Inventory": "inventory",
             "Create User": "signup",
         })
@@ -135,12 +136,12 @@ def checkout(request):
         items = ''
         if user.profile.currency > total_price:
             for item in order_list:
-                item.removeFromInv(1)
+                item.remove_from_inv(1)
                 item.save()
                 items = items + f'{str(item.id)},'
             for sandwich in sandwich_list:
                 for item in sandwich.ingredients:
-                    item.removeFromInv(1)
+                    item.remove_from_inv(1)
                     item.save()
 
 
@@ -178,7 +179,7 @@ def fill_order(request, order_id):
     return render(request, 'home/fill_order.html', context)
 
 def isMade(request, order_id):
-    order = Order.objects.all()[int(order_id) - 1]
+    order = Order.objects.filter(id=order_id)[0]
     if order.isFilled:
         order.delete()
         return redirect('/queue')
@@ -188,7 +189,7 @@ def isMade(request, order_id):
         return redirect(f'/fill_order/{ order_id }')
 
 def isFilled(request, order_id):
-    order = Order.objects.all()[int(order_id) - 1]
+    order = Order.objects.filter(id=order_id)[0]
     if order.isMade:
         order.delete()
         return redirect('/queue')
@@ -217,8 +218,31 @@ def inventory(request):
         'drink_list' : drink_list,
         'ing_list' : ing_list,
     }
-    return render(request, 'home/inventory.html', context)
+    if request.method == 'POST':
+        form = FoodItemForm(request.POST)
+        print('VALID: ', form.is_valid())
+        if form.is_valid():
+            item = request.POST.get('item')
+            type = request.POST.get('type')
+            amount = request.POST.get('amount')
+            amount = int(amount)
+            food = foodItem.objects.get(type=type, sub_type=item)
+            food.add_to_inv(amount)
+            food.save()
+            foodItem.objects.update()
+        else:
+            form = IngredientsForm(request.POST)
+            if form.is_valid():
+                type = request.POST.get('type')
+                amount = request.POST.get('amount')
+                amount = int(amount)
+                food = Ingredients.objects.get(type=type)
+                food.add_to_inv(amount)
+                food.save()
+                Ingredients.objects.update()
 
+
+    return render(request, 'home/inventory.html', context)
 
 def addMoney(request):
     user = request.user

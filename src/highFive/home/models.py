@@ -15,9 +15,9 @@ class foodItem(models.Model):
     item_id = models.IntegerField(default=random.randint(1000, 140000))
     def __str__(self):
         return self.sub_type
-    def addToInv(self, amount):
-        self.inv_count += amount
-    def removeFromInv(self, amount):
+    def add_to_inv(self, amount):
+        self.inv_count = self.inv_count + amount
+    def remove_from_inv(self, amount):
         self.inv_count -= amount
 
 
@@ -30,9 +30,9 @@ class Ingredients(models.Model):
     inv_count = models.IntegerField(default=0)
     def __str__(self):
         return self.type
-    def addToInv(self, amount):
+    def add_to_inv(self, amount):
         self.inv_count += amount
-    def removeFromInv(self, amount):
+    def remove_from_inv(self, amount):
         self.inv_count -= amount
 
 
