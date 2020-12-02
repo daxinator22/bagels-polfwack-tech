@@ -19,7 +19,7 @@
 
 		<div class='header'>
 			<div class='logo'>
-				<img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo...">
+				<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
 			</div>
 			<div class='menu'>
 				{% if user.is_authenticated %}
@@ -45,18 +45,21 @@
 				</div>
 				{% endif %}
 			</div>
-
 		</div>
 
-		<div class='body_page'>
-			<div class='title_box'>
+		<div class='body_page home_body'>
+			<div class='content_box'>
 				<h1 class='home_title'>Welcome to Dan's Bagels</h1>
 			</div>
-		{% if user.is_authenticated %}
-		<p>Your current balance is: {{ user.profile.currency }}</p>
-		{% else %}
-		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
-		{% endif %}
+			{% if user.is_authenticated %}
+			<div class='button_box'>
+				<a class='get_started' href='{{ button_link }}'>Get Started</a>
+			</div>
+			{% else %}
+			<div class='button_box'>
+				<a class='get_started' href='/accounts/login/'>Get Started</a>
+			</div>
+			{% endif %}
 		</div>
 
 

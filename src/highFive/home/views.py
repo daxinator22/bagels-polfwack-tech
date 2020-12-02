@@ -21,11 +21,10 @@ from django import forms
 from .forms import SignUpForm, CheckForm, addMoneyForm, FoodItemForm, IngredientsForm
 from django.contrib import messages
 
-
-
-def index(request):
+def get_user_context(request):
     urls = {}
     group = None
+    button_link = '/accounts/login/'
     try:
         group = str(request.user.groups.all()[0])
     except IndexError:
@@ -36,16 +35,19 @@ def index(request):
             "Build Your Bagel!": "build",
             'Add Money': 'addMoney',
         })
+        button_link = '/build/'
 
     elif group == "Cashier":
         urls.update({
             "Check Queue": "queue",
         })
+        button_link = '/queue/'
 
     elif group == "Chef":
         urls.update({
             "Check Queue": "queue",
         })
+        button_link = '/queue/'
 
     elif group == "Manager":
         urls.update({
@@ -53,12 +55,18 @@ def index(request):
             "Inventory": "inventory",
             "Create User": "signup",
         })
+        button_link = '/inventory/'
 
     context = {
             'user': request.user,
             'group': group,
             'urls': urls,
+            'button_link': button_link,
     }
+    return context
+
+def index(request):
+    context = get_user_context(request)
     #return HttpResponse(template.render(context, request))
     return render(request, 'home/index.html', context)
 

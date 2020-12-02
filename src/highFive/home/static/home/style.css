@@ -44,12 +44,19 @@
 
 .body_page{
 	padding-top: 5%;
-	background: url(bagels.jpg);
 	background-size: 100%;
-	height: 750px;
+	height: 780px;
 }
 
-.title_box{
+.home_body{
+	background-image: url('bagels.jpg');
+}
+
+.login_body{
+	background-image: url('dough.jpg');
+}
+
+.content_box{
 	border-radius: 50px;
 	background-color: white;
 	background-color: rgba(0, 0, 0, .5);
@@ -67,10 +74,37 @@
 	color: #14cce3;
 }
 
+.button_box{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+.get_started{
+	text-decoration: none;
+	background-color: #14cce3;
+	border-radius: 25px;
+	border: none;
+	color: white;
+	margin-top: 5%;
+	text-align: center;
+	font-size: 45px;
+	font-family: 'Permanent Marker', 'cursive';
+	padding: 2% 5%;
+}
+
+.get_started:hover{
+	background-color: #ed850e;
+	color: #14cce3;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 }
+
 table.center {
   margin-left: auto;
   margin-right: auto;
