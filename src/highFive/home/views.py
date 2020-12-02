@@ -40,19 +40,16 @@ def index(request):
     elif group == "Cashier":
         urls.update({
             "Check Queue": "queue",
-            #"Fill Order": "fill_order",
         })
 
     elif group == "Chef":
         urls.update({
             "Check Queue": "queue",
-            "Fill Order": "fill_order",
         })
 
     elif group == "Manager":
         urls.update({
             "Check Queue": "queue",
-            #"Fill Order": "fill_order",
             "Inventory": "inventory",
             "Create User": "signup",
         })
