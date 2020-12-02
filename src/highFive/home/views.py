@@ -176,7 +176,7 @@ def fill_order(request, order_id):
     return render(request, 'home/fill_order.html', context)
 
 def isMade(request, order_id):
-    order = Order.objects.all()[int(order_id) - 1]
+    order = Order.objects.filter(id=order_id)[0]
     if order.isFilled:
         order.delete()
         return redirect('/queue')
@@ -186,7 +186,7 @@ def isMade(request, order_id):
         return redirect(f'/fill_order/{ order_id }')
 
 def isFilled(request, order_id):
-    order = Order.objects.all()[int(order_id) - 1]
+    order = Order.objects.filter(id=order_id)[0]
     if order.isMade:
         order.delete()
         return redirect('/queue')
