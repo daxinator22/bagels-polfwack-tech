@@ -48,8 +48,10 @@
 
 		</div>
 
-		<div class='body_page' style="background-image: url({% static 'home/bagels.jpg' %})">
-		<h2>High Five Bagels</h2>
+		<div class='body_page'>
+			<div class='title_box'>
+				<h1 class='home_title'>Welcome to Dan's Bagels</h1>
+			</div>
 		{% if user.is_authenticated %}
 		<p>Your current balance is: {{ user.profile.currency }}</p>
 		{% else %}
