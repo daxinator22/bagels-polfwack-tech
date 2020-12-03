@@ -94,7 +94,7 @@
 	margin-right: 25%;
 }
 
-.get_started{
+.link_button{
 	text-decoration: none;
 	background-color: #14cce3;
 	border-radius: 25px;
@@ -107,9 +107,45 @@
 	padding: 2% 5%;
 }
 
-.get_started:hover{
+.link_button:hover{
 	background-color: #ed850e;
 	color: #14cce3;
+}
+
+.login_button{
+	font-size: 25px;
+}
+
+.create_label{
+	color: #14cce3;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+}
+
+.create_link{
+	color: white;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+}
+
+label{
+	color: #14cce3;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+	margin-right: 10px;
+}
+
+input{
+	height: 30px;
+	width: 400px;
+	border-radius: 10px;
+	border: none;
+	font-size: 20px;
+	padding-left: 12px;
+}
+
+input:focus{
+	outline: none;
 }
 
 body {

@@ -30,13 +30,13 @@
 	<div class='body_page login_body'>
 		<div id='login_box' class="login content_box">
 			<h1 class='login_title'>Log In to Dan's Bagels</h1>
-			    <form action='/accounts/login/' method="post">
+			    <form action='/accounts/login/?next=/home' method="POST">
 				{% csrf_token %}
 				{{ form.as_p }}
-				<button type="submit">Log In</button>
+				<button type="submit" class=' login_button link_button'>Log In</button>
 			    </form>
+			<p class='create_label'>Don't have an account? <a href="/signup" class='create_link menu_link'>Create one here!</a></p>
 		</div>
-        <p>Don't have an account? <a href="/signup">Create one here!</a></p>
 	</div>
     </body>
 </html>
