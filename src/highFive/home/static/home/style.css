@@ -23,12 +23,29 @@
 	height: 100px;
 }
 
+.queue{
+	display: inline;
+	width: 100%;
+}
+
 .menu_item {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100px;
 	width: 16%;
+}
+
+.queue_item {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+	border-radius: 20px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	width: 25%;
 }
 
 .menu_link{
@@ -56,6 +73,10 @@
 	background-image: url('shop.jpg');
 }
 
+.queue_body{
+	background-image: url('dough_2.jpg');
+}
+
 .content_box{
 	border-radius: 50px;
 	background-color: white;
@@ -74,9 +95,21 @@
 	display: block;
 }
 
+#queue_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
 .login_title{
 	font-family: 'Permanent Marker', 'cursive';
 	font-size: 75px;
+	color: #14cce3;
+}
+
+.queue_title{
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 50px;
 	color: #14cce3;
 }
 
@@ -126,6 +159,17 @@
 	color: white;
 	font-family: 'Permanent Marker', 'cursive';
 	font-size: 30px;
+}
+
+.order_link{
+	color: black;
+	font-family: 'Arial';
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.order_link:hover{
+	color: #14cce3;
 }
 
 label{

@@ -161,11 +161,13 @@ def checkout(request):
     return render(request, 'home/checkout.html', context)
 
 def queue(request):
+    user_context = get_user_context(request)
     order_list = Order.objects.all()
     context = {
         'user': request.user,
         'order_list': order_list,
     }
+    context.update(user_context)
     return render(request, 'home/queue.html', context)
 
 def fill_order(request, order_id):
