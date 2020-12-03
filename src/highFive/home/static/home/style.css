@@ -1,123 +1,202 @@
-.shadowed {
-	text-shadow: 1px 1px 2px black;
+.header {
+	display: flex;
+	background-color: #14cce3;
+	height: 100px;
+}
+
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 25%;
+	height: 100px;
+}
+
+.logo_img{
+	height: 100px;
+}
+
+.menu{
+	display: flex;
+	justify-content: flex-end;
+	width: 75%;
+	height: 100px;
+}
+
+.queue{
+	display: inline;
+	width: 100%;
+}
+
+.menu_item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	width: 16%;
+}
+
+.queue_item {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+	border-radius: 20px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	width: 25%;
+}
+
+.menu_link{
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 25px;
 	color: white;
+	text-decoration: none;
 }
 
-a {
+.menu_link:hover{
+	color: #ed850e;
+}
+
+.body_page{
+	padding-top: 5%;
+	background-size: 100%;
+	height: 780px;
+}
+
+.home_body{
+	background-image: url('bagels.jpg');
+}
+
+.login_body{
+	background-image: url('shop.jpg');
+}
+
+.queue_body{
+	background-image: url('dough_2.jpg');
+}
+
+.content_box{
+	border-radius: 50px;
+	background-color: white;
+	background-color: rgba(0, 0, 0, .5);
+	margin-left: 25%;
+	margin-right: 25%;
 	text-align: center;
-
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-input {
+
+#login_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
+#queue_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
+.login_title{
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 75px;
+	color: #14cce3;
+}
+
+.queue_title{
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 50px;
+	color: #14cce3;
+}
+
+.home_title{
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 125px;
+	color: #14cce3;
+}
+
+.button_box{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+.link_button{
+	text-decoration: none;
+	background-color: #14cce3;
+	border-radius: 25px;
+	border: none;
+	color: white;
+	margin-top: 5%;
 	text-align: center;
+	font-size: 45px;
+	font-family: 'Permanent Marker', 'cursive';
+	padding: 2% 5%;
 }
 
-h2 {
-	text-align: center;
-	color: RoyalBlue;
+.link_button:hover{
+	background-color: #ed850e;
+	color: #14cce3;
 }
 
-p {
-	text-align: center;
-	font-family: 'helvetica neue', helvetica, sans-serif;
-	color: grey;
-}
-div .login {
-	text-align: center;
-	font-family: 'helvetica neue', helvetica, sans-serif;
-	color: grey;
+.login_button{
+	font-size: 25px;
 }
 
-.menuItem {
-	text-align: center;
-	font-family: 'helvetica neue', helvetica, sans-serif;
-	color: grey;
+.create_label{
+	color: #14cce3;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
 }
 
-li {
-	text-align: center;
-	font-family: 'helvetica neue', helvetica, sans-serif;
-	color: grey;
+.create_link{
+	color: white;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
 }
 
-#homepage{
-     
-     color: grey;
-     height: 650px;
-     padding: 100px 0 0 0;
-     }
-
-.sandwich{
-	color: red;
-	text-align: center:
+.order_link{
+	color: black;
+	font-family: 'Arial';
+	font-size: 20px;
+	text-decoration: none;
 }
 
-.stuff-box {
-	font-family: 'helvetica neue', helvetica, sans-serif;
-	color: grey;
-	letter-spacing: 1px;
-	text-transform: capitalize;
-	text-align: center;
-	padding: 3px 10px;
-	margin: 10px;
-	cursor: pointer;
+.order_link:hover{
+	color: #14cce3;
+}
+
+label{
+	color: #14cce3;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+	margin-right: 10px;
+}
+
+input{
+	height: 30px;
+	width: 400px;
 	border-radius: 10px;
-	border-width: 2px;
-	border-style: solid;
-	background: rgb(180,180,60);
+	border: none;
+	font-size: 20px;
+	padding-left: 12px;
 }
 
-.timestamp {
-    font-size: smaller;
-    font-family: monospace;
-    padding: 0px 10px;
+input:focus{
+	outline: none;
 }
 
-.red {
-	border-color: rgb(255,0,0);
-	background:   rgb(180,60,60);
-	box-shadow: 1px 1px 2px rgba(200,0,0,0.4);
+body {
+	margin: 0;
+	padding: 0;
 }
 
-.yellow {
-	border-color: rgb(255,255,0);
-	background:   rgb(180,180,60);
-	box-shadow: 1px 1px 2px rgba(200,200,0,0.4);
-
-}
-
-.brown {
-	border-radius: 10px;
-	border-width: 2px;
-	border-style: solid;
-	border-color: rgb(64, 34, 0);
-	background:   rgb(255, 255, 255);
-}
-
-.center {
-	text-align: center;
-}
-
-.blue {
-	border-color: rgb(0,0,255);
-	background:   rgb(60,60,180);
-	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
-}
-
-.green {
-	border-color: rgb(0,255,0);
-	background:   rgb(60,180,60);
-	box-shadow: 1px 1px 2px rgba(0,200,0,0.4);
-}
-
-.black {
-    border-color: rgb(0,0,0);
-    background:   rgb(75,75,75);
-    box-shadow: 1px 1px 2px rgba(200,200,0,0.4);
-}
-
-div {
-   text-align: center;
-}
 table.center {
   margin-left: auto;
   margin-right: auto;

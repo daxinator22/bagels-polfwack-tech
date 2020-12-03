@@ -9,28 +9,62 @@
 		<title>Welcome to the home page!</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+		<link type='image/png' href="{% static 'home/logo.png' %}" rel="shortcut icon">
 
 	</head>
 
 
-	<body id="homepage">
+	<body>
 
-		<h2>High Five Bagels</h2>
-		{% if user.is_authenticated %}
-		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
-		<p>You are current logged in as a {{ group }}</p>
-		<p>Your current balance is: {{ user.profile.currency }}</p>
-		<div>
-			<a href="addMoney">Add Money To Your Account</a>
+		<div class='header'>
+			<div class='logo'>
+				<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
+			</div>
+			<div class='menu'>
+				<div class='menu_item'>
+					<a href='/' class='menu_link'>Home</a>
+				</div>
+				{% if user.is_authenticated %}
+
+				{% for name, href in urls.items %}
+				<div class='menu_item'>
+					<a href="{{ href }}" class='menu_link'>{{ name }}</a>
+				</div>
+				{% endfor %}
+
+				<div class='menu_item'>
+					<a href="/accounts/password_reset/" class='menu_link'>Reset Password</a>
+				</div>
+				<div class='menu_item'>
+					<a href="/accounts/logout/?next=/" class='menu_link'>Logout</a>
+				</div>
+				{% else %}
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Login</a>
+				</div>
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Sign Up</a>
+				</div>
+				{% endif %}
+			</div>
 		</div>
 
-		{% for name, href in urls.items %}
-		<p><a href="{{ href }}">{{ name }}</a></p>
-		{% endfor %}
-		<p><a href="accounts/password_reset/">Reset Password</a></p>
-		{% else %}
-		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
-		{% endif %}
+		<div class='body_page home_body'>
+			<div class='content_box'>
+				<h1 class='home_title'>Welcome to Dan's Bagels</h1>
+			</div>
+			{% if user.is_authenticated %}
+			<div class='button_box'>
+				<a class='link_button' href='{{ button_link }}'>Get Started</a>
+			</div>
+			{% else %}
+			<div class='button_box'>
+				<a class='link_button' href='/accounts/login/'>Get Started</a>
+			</div>
+			{% endif %}
+		</div>
 
 
 

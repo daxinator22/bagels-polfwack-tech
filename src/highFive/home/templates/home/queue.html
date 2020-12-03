@@ -9,24 +9,63 @@
 		<title>Queue page!</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+		<link type='image/png' href="{% static 'home/logo.png' %}" rel="shortcut icon">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
 	</head>
 
 
 	<body>
 
-		<h2>High Five Bagels</h2>
-		{% if user.is_authenticated %}
-		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
-		<p>You are current logged in as {{ group }}</p>
-		<p>This is the queue page</p>
-		{% for order in order_list %}
-		<p><a href='/fill_order/{{ order.id }}/'>Order #{{ order.id }}</a></p>
-		{% endfor %}
-		<p><a href="/">Home Page</a></p>
-		{% else %}
-		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
-		{% endif %}
+		<div class='header'>
+			<div class='logo'>
+				<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
+			</div>
+			<div class='menu'>
+				<div class='menu_item'>
+					<a href='/' class='menu_link'>Home</a>
+				</div>
+				{% if user.is_authenticated %}
+
+				{% for name, href in urls.items %}
+				<div class='menu_item'>
+					<a href="{{ href }}" class='menu_link'>{{ name }}</a>
+				</div>
+				{% endfor %}
+
+				<div class='menu_item'>
+					<a href="/accounts/password_reset/" class='menu_link'>Reset Password</a>
+				</div>
+				<div class='menu_item'>
+					<a href="/accounts/logout/?next=/" class='menu_link'>Logout</a>
+				</div>
+				{% else %}
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Login</a>
+				</div>
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Sign Up</a>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class='queue_body body_page'>
+			<div id='queue_box' class='content_box'>
+				{% if user.is_authenticated %}
+				<h1 class='queue_title'>Order Queue</h1>
+				<div class='queue'>
+					{% for order in order_list %}
+					<div class='queue_item'>
+						<a href='/fill_order/{{ order.id }}/' class='order_link'>Order #{{ order.id }}</a>
+					</div>
+					{% endfor %}
+				</div>
+				{% else %}
+				<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
+				{% endif %}
+			</div>
+		</div>
 
 	</body>
 </html>
