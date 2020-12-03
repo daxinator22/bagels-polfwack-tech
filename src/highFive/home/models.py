@@ -38,8 +38,25 @@ class Ingredients(models.Model):
 
 class BagelSandwich(models.Model):
     ingredients = []
+    bagel = foodItem.objects.get(item_id=62345433)
+
+
+
+
     def addItem(self, item):
         self.ingredients.append(item)
+
+    def clearIng(self):
+        self.ingredients.clear()
+
+    def setIngredients(self, ingrs):
+        self.ingredients = ingrs
+
+    def setBagel(self, id):
+        self.bagel = foodItem.objects.get(item_id=id)
+
+    def getBagelPrice(self):
+        return self.bagel.price
 
 
 class Order(models.Model):

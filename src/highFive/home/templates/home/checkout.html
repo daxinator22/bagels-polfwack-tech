@@ -31,8 +31,10 @@
 			{% for sandwich in sandwich_list %}
 				{% if sandwich.ingredients %}
 					<p class="sandwich">Custom Sandwich With:</p>
+					<p>{{ sandwich.bagel.sub_type }} {{ sandwich.bagel.type }} {{ sandwich.bagel.price }}
 					{% for item in sandwich.ingredients %}
-						<p>{{ item.type }} ${{ item.price }}</p>
+						<p>{{ item.type }} {{ item.price }}</p>
+
 					{% endfor %}
 				{% endif %}
 			{% endfor %}

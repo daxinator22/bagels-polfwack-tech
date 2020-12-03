@@ -31,6 +31,11 @@
 					<p></p>
 				{% endfor %}
 				<h2>Customize Your Own Bagel Sandwich!</h2>
+				{% for item in food_list %}
+					{% if item.type == 'Bagel' %}
+						<input type="checkbox" class="center" value={{item.item_id}} name="bagelCheck" id={{item}}>{{ item.sub_type }} {{ item.type }} : ${{item.price}}</input>
+					{% endif %}
+				{% endfor %}
 				{% for item in ingredient_list %}
 					<input type="checkbox" class="center" value={{item.type}} name="ingrChecked" id={{item}}>{{ item.type }} : ${{item.price}}</input>
 					<p></p>

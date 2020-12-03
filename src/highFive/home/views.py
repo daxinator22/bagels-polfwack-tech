@@ -88,20 +88,42 @@ def build(request):
     }
     if request.method == 'POST':
         form = CheckForm(request.POST)
+
         if form.is_valid():
             checked = request.POST.getlist('checked')
             ingrChecked = request.POST.getlist('ingrChecked')
+            bagelCheck = request.POST.getlist('bagelCheck')
             order = request.user.profile.order
             for item in checked:
                 currFoodItem = foodItem.objects.get(item_id=item)
                 print("CurrFoodItem: ", currFoodItem.type)
                 order.bagels.append(currFoodItem)
-            sandwich = BagelSandwich()
+
+
+
+            sandwich = BagelSandwich.objects.create()
+            sandwich.clearIng()
+
+            for x in bagelCheck:
+                sandwich.setBagel(x)
+                break
+
+            ingrs = []
+
             for item in ingrChecked:
                 currIngr = Ingredients.objects.get(type=item)
-                sandwich.addItem(currIngr)
-                sandwich.save()
+                ingrs.append(currIngr)
+
+            sandwich.setIngredients(ingrs)
+
+
+
+
+
             order.sandwiches.append(sandwich)
+
+
+
             
 
 
@@ -127,8 +149,10 @@ def checkout(request):
     for item in order_list:
         total_price += item.price
     for sandwich in sandwich_list:
+        total_price += sandwich.getBagelPrice()
         for item in sandwich.ingredients:
             total_price += item.price
+
 
     context = {
         'order_list': order_list,
@@ -152,6 +176,9 @@ def checkout(request):
 
             o = Order(items=items)
             o.save()
+            order_list.clear()
+            sandwich_list.clear()
+            total_price = 0
             user.profile.currency = user.profile.currency - total_price
             user.profile.order.bagels.clear()
             user.profile.order.sandwiches.clear()
