@@ -28,14 +28,14 @@
 		</div>
         <!-- templates/registration/login.html -->
 	<div class='body_page login_body'>
-        <h1>Log In to Dan's Bagels</h1>
-        <div class="login content_box">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Log In</button>
-            </form>
-        </div>
+		<div id='login_box' class="login content_box">
+			<h1 class='login_title'>Log In to Dan's Bagels</h1>
+			    <form action='/accounts/login/' method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit">Log In</button>
+			    </form>
+		</div>
         <p>Don't have an account? <a href="/signup">Create one here!</a></p>
 	</div>
     </body>

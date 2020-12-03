@@ -53,7 +53,7 @@
 }
 
 .login_body{
-	background-image: url('dough.jpg');
+	background-image: url('shop.jpg');
 }
 
 .content_box{
@@ -66,6 +66,18 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+#login_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
+.login_title{
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 75px;
+	color: #14cce3;
 }
 
 .home_title{
