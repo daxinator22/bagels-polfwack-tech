@@ -9,29 +9,65 @@
 		<title>Fill Order page!</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+		<link type='image/png' href="{% static 'home/logo.png' %}" rel="shortcut icon">
 
 	</head>
 
 
 	<body>
+		<div class='header'>
+			<div class='logo'>
+				<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
+			</div>
+			<div class='menu'>
+				<div class='menu_item'>
+					<a href='/' class='menu_link'>Home</a>
+				</div>
+				{% if user.is_authenticated %}
 
-		<h2>High Five Bagels</h2>
-		{% if user.is_authenticated %}
-		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
-		<p>You are current logged in as {{ group }}</p>
-		<h3>Order #{{ order.id }}</h3>
-		<ul>
-		{% for item in items %}
-			<li>{{ item.type }}: {{ item.sub_type }}</li>
-		{% endfor %}
-		</ul>	
-		<p><a href='/fill_order/{{ order.id }}/isMade/'>Is made</a>: {{ order.isMade }}</p>
-		<p><a href='/fill_order/{{ order.id }}/isFilled/'>Is filled</a>: {{ order.isFilled }}</p>
-		<p><a href="/">Home Page</a></p>
-		<p><a href="/queue">Back to Queue</a></p>
-		{% else %}
-		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
-		{% endif %}
+				{% for name, href in urls.items %}
+				<div class='menu_item'>
+					<a href="{{ href }}" class='menu_link'>{{ name }}</a>
+				</div>
+				{% endfor %}
+
+				<div class='menu_item'>
+					<a href="/accounts/password_reset/" class='menu_link'>Reset Password</a>
+				</div>
+				<div class='menu_item'>
+					<a href="/accounts/logout/?next=/" class='menu_link'>Logout</a>
+				</div>
+				{% else %}
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Login</a>
+				</div>
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Sign Up</a>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class='fill_order_body body_page'>
+			<div class='content_box' id='fill_order_box'>
+				<h1 class='queue_title'>Order Page</h1>
+				{% if user.is_authenticated %}
+				<div class='order_box'>
+				<h2 class='order_title'>Order #{{ order.id }}</h2>
+					<ul class='items_list'>
+					{% for item in items %}
+						<li>{{ item.type }}: {{ item.sub_type }}</li>
+					{% endfor %}
+					</ul>	
+				</div>
+				<p class='fill_order_status'><a href='/fill_order/{{ order.id }}/isMade/' class='fill_order_link'>Is made:</a> {{ order.isMade }}</p>
+				<p class='fill_order_status'><a href='/fill_order/{{ order.id }}/isFilled/' class='fill_order_link'>Is filled:</a> {{ order.isFilled }}</p>
+				{% else %}
+				<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
+				{% endif %}
+			</div>
+		</div>
 
 	</body>
 </html>

@@ -198,6 +198,7 @@ def queue(request):
     return render(request, 'home/queue.html', context)
 
 def fill_order(request, order_id):
+    user_context = get_user_context(request)
     item_string = Order.objects.filter(id=int(order_id))[0].items
     item_list = item_string.split(',')
     item_obj = list()
@@ -206,10 +207,10 @@ def fill_order(request, order_id):
             item_obj.append(foodItem.objects.filter(id=item)[0])
 
     context = {
-        'user': request.user,
         'order': get_object_or_404(Order, pk=order_id),
         'items': item_obj,
     }
+    context.update(user_context)
     return render(request, 'home/fill_order.html', context)
 
 def isMade(request, order_id):

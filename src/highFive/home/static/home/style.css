@@ -38,6 +38,8 @@
 
 .queue_item {
 	margin-top: 10px;
+	margin-right: 5px;
+	margin-left: 5px;
 	margin-bottom: 10px;
 	background-color: white;
 	border-radius: 20px;
@@ -74,6 +76,10 @@
 }
 
 .queue_body{
+	background-image: url('up_bagels.jpg');
+}
+
+.fill_order_body{
 	background-image: url('dough_2.jpg');
 }
 
@@ -96,6 +102,12 @@
 }
 
 #queue_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
+#fill_order_box{
 	padding-top: 10px;
 	padding-bottom: 30px;
 	display: block;
@@ -142,7 +154,6 @@
 
 .link_button:hover{
 	background-color: #ed850e;
-	color: #14cce3;
 }
 
 .login_button{
@@ -170,6 +181,46 @@
 
 .order_link:hover{
 	color: #14cce3;
+}
+
+.order_box{
+	background-color: white;
+	margin-right: 75px;
+	margin-left: 75px;
+	border-radius: 20px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 200px;
+	padding-right: 200px;
+}
+
+.order_title{
+	font-family: 'Arial';
+}
+
+.items_list{
+	text-align: left;
+	font-family: 'Arial';
+	padding-left: 40%;
+}
+
+.fill_order_link{
+	color: white;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+	text-decoration: none;
+	margin-right: 20px;
+}
+
+.fill_order_link:hover{
+	color: #ed850e;
+}
+
+.fill_order_status{
+	color: #14cce3;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+	text-decoration: none;
 }
 
 label{
