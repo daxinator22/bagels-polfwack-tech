@@ -88,6 +88,10 @@
 	height: 1000px;
 }
 
+.checkout_body{
+	background-image: url('checkout.jpg');
+}
+
 .addMoney_body{
 	background-image: url('money.jpg');
 }
@@ -132,6 +136,13 @@
 	padding-top: 10px;
 	padding-bottom: 30px;
 	display: block;
+}
+
+#checkout_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+	justify-content: center;
 }
 
 .login_title{
@@ -331,6 +342,62 @@
 
 .add_button:hover{
 	background-color: #ed850e;
+}
+
+.cart_cont{
+	display: flex;
+	justify-content: center;
+}
+
+.cart_items{
+	background-color: white;
+	border-radius: 20px;
+	width: 50%;
+	font-family: 'Arial';
+	height: 300px;
+	overflow: scroll;
+	margin-bottom: 20px;
+}
+
+.clear_button{
+	color: white;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+	background-color: #14cce3;
+	text-decoration: none;
+	padding-left: 30px;
+	padding-right: 30px;
+	height: 50px;
+	border-radius: 10px;
+}
+
+.clear_button:hover{
+	background-color: #ed850e;
+}
+
+.cart_price{
+	font-family: 'Arial';
+	font-size: 30px;
+	color: #14cce3;
+}
+
+.purchase_button{
+	color: white;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+	background-color: #14cce3;
+	height: 60px;
+}
+
+.purchase_button:hover{
+	background-color: #ed850e;
+}
+
+.conf_bal{
+	color: #14cce3;
+	font-family: 'Arial';
+	font-size: 30px;
+	padding-bottom: 30px;
 }
 
 label{

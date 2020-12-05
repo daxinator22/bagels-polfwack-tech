@@ -71,9 +71,7 @@ def index(request):
     return render(request, 'home/index.html', context)
 
 def confirmation(request):
-    context = {
-        'user': request.user
-    }
+    context = get_user_context(request)
     return render(request, 'home/confirmation.html', context)
 
 def build(request):
@@ -148,9 +146,9 @@ def checkout(request):
         'order_list': order_list,
         'total_price': total_price,
         'sandwich_list': sandwich_list,
-        'user': user
 
     }
+    context.update(get_user_context(request))
     if request.method == 'POST':
         items = ''
         if user.profile.currency > total_price:

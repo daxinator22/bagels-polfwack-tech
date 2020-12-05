@@ -5,49 +5,84 @@
 
 <html lang="en">
 	<head>
-		<title>Welcome to the home page!</title>
+		<title>Checkout Page</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+		<link type='image/png' href="{% static 'home/logo.png' %}" rel="shortcut icon">
 
 	</head>
 
 
 	<body>
 
-		<h2>Check Out!</h2>
+		<div class='header'>
+			<div class='logo'>
+				<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
+			</div>
+			<div class='menu'>
+				<div class='menu_item'>
+					<a href='/' class='menu_link'>Home</a>
+				</div>
+				{% if user.is_authenticated %}
 
-		<div>
-			<a href='/home' >Return Home</a>
-			<p>---------------</p>
-			<a href='/clearOrder'>Clear Order</a>
-			<p>---------------</p>
-			<a href='/home/build'>Add To Your Order</a>
-		</div>
-		<h3 class="center">Current Items in cart:</h3>
-			{% for item in order_list %}
-				<p>{{ item.type }} {{ item.sub_type}} ${{ item.price }}</p>
-			{% endfor %}
-			<h3 class="center">Sandwiches:</h3>
-			{% for sandwich in sandwich_list %}
-				{% if sandwich.ingredients %}
-					<p class="sandwich">Custom Sandwich With:</p>
-					<p>{{ sandwich.bagel.sub_type }} {{ sandwich.bagel.type }} {{ sandwich.bagel.price }}
-					{% for item in sandwich.ingredients %}
-						<p>{{ item.type }} {{ item.price }}</p>
+				{% for name, href in urls.items %}
+				<div class='menu_item'>
+					<a href="{{ href }}" class='menu_link'>{{ name }}</a>
+				</div>
+				{% endfor %}
 
-					{% endfor %}
+				<div class='menu_item'>
+					<a href="/accounts/password_reset/" class='menu_link'>Reset Password</a>
+				</div>
+				<div class='menu_item'>
+					<a href="/accounts/logout/?next=/" class='menu_link'>Logout</a>
+				</div>
+				{% else %}
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Login</a>
+				</div>
+				<div class='menu_item'>
+					<a href='/accounts/signup/' class='menu_link'>Sign Up</a>
+				</div>
 				{% endif %}
-			{% endfor %}
-			<div>
-				<h3>Total Price: {{ total_price }}   Current Balance: {{user.profile.currency}}</h3>
 			</div>
-			<form method="post">
-				{% csrf_token %}
-				<div>
-					<input type="submit" value="Purchase" method="post"></input>
-			</div>
-			</form>
+		</div>
+		<div class='body_page checkout_body'>
+			<div class='content_box' id='checkout_box'>
+				<h1 class='queue_title'>Check Out!</h1>
+				<div class='cart_cont'>
+					<div class='cart_items'>
+						<h3 class="center">Current Items in cart:</h3>
+						{% for item in order_list %}
+							<p>{{ item.type }} {{ item.sub_type}} ${{ item.price }}</p>
+						{% endfor %}
+						<h3 class="center">Sandwiches:</h3>
+						{% for sandwich in sandwich_list %}
+							{% if sandwich.ingredients %}
+								<p class="sandwich">Custom Sandwich With:</p>
+								<p>{{ sandwich.bagel.sub_type }} {{ sandwich.bagel.type }} {{ sandwich.bagel.price }}
+								{% for item in sandwich.ingredients %}
+									<p>{{ item.type }} {{ item.price }}</p>
 
+								{% endfor %}
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+				<a href='/clearOrder' class='clear_button'>Clear Order</a>
+				<div>
+					<h3 class='cart_price'>Total Price: ${{ total_price }}   Current Balance: ${{user.profile.currency}}</h3>
+				</div>
+				<form method="post">
+					{% csrf_token %}
+					<div>
+						<input type="submit" value="Purchase" method="post" class='purchase_button'></input>
+				</div>
+				</form>
+			</div>
+		</div>
 
 
 
