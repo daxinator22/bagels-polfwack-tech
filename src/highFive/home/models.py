@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
 from django.utils import timezone
+from datetime import datetime
 import random
 
 # Create your models here.
@@ -63,8 +64,15 @@ class Order(models.Model):
     items = models.CharField(max_length=200, default='none')
     isMade = models.BooleanField(default=False)
     isFilled = models.BooleanField(default=False)
+    pickUpDate = datetime.now().strftime("%d %b %Y %H:%M:%S %Z")
     bagels = []
     sandwiches = []
+
+    def setPickUpDate(self, d):
+        self.pickUpDate = datetime.strptime(d, '%Y-%m-%dT%H:%M')
+
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

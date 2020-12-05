@@ -18,7 +18,7 @@ from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
-from .forms import SignUpForm, CheckForm, addMoneyForm, FoodItemForm, IngredientsForm
+from .forms import SignUpForm, CheckForm, addMoneyForm, FoodItemForm, IngredientsForm, PurchaseForm
 from django.contrib import messages
 
 def get_user_context(request):
@@ -71,7 +71,10 @@ def index(request):
     return render(request, 'home/index.html', context)
 
 def confirmation(request):
-    context = get_user_context(request)
+    context = {
+        'date': user.profile.order.pickUpDate.date()
+    }
+    context.update(get_user_context(request))
     return render(request, 'home/confirmation.html', context)
 
 def build(request):
@@ -150,28 +153,38 @@ def checkout(request):
     }
     context.update(get_user_context(request))
     if request.method == 'POST':
-        items = ''
-        if user.profile.currency > total_price:
-            for item in order_list:
-                item.remove_from_inv(1)
-                item.save()
-                items = items + f'{str(item.id)},'
-            for sandwich in sandwich_list:
-                for item in sandwich.ingredients:
+        #form = PurchaseForm(request.POST)
+        form = PurchaseForm(request.POST)
+        print("Valid: ", form.is_valid())
+        print("Errors: ", form.errors)
+        if form.is_valid():
+            items = ''
+
+            if user.profile.currency > total_price:
+                for item in order_list:
                     item.remove_from_inv(1)
                     item.save()
+                    items = items + f'{str(item.id)},'
+                for sandwich in sandwich_list:
+                    for item in sandwich.ingredients:
+                        item.remove_from_inv(1)
+                        item.save()
 
 
-            o = Order(items=items)
-            o.save()
-            order_list.clear()
-            sandwich_list.clear()
-            total_price = 0
-            user.profile.currency = user.profile.currency - total_price
-            user.profile.order.bagels.clear()
-            user.profile.order.sandwiches.clear()
-            user.save()
-            return render(request, 'home/confirmation.html', context)
+                o = Order(items=items)
+                if request.POST.get('pickUpTime'):
+                    date = request.POST.get('pickUpTime')
+                    user.profile.order.setPickUpDate(date)
+                    print("Raw Date: ", date)
+                o.save()
+                order_list.clear()
+                sandwich_list.clear()
+                total_price = 0
+                user.profile.currency = user.profile.currency - total_price
+                user.profile.order.bagels.clear()
+                user.profile.order.sandwiches.clear()
+                user.save()
+                return render(request, 'home/confirmation.html', context)
 
     return render(request, 'home/checkout.html', context)
 
