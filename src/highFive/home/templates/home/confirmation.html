@@ -15,6 +15,7 @@
 	<body>
 
 		<h2>Your Order Has Been Placed!</h2>
+      <p>You can pick up your bagel on {{ user.profile.order.pickUpDate }}</p>
       <p>Your Balance: {{ user.profile.currency }}</p>
       <div>
   			<a href='/home' >Return Home</a>

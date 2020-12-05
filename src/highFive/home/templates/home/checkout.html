@@ -44,6 +44,7 @@
 			<form method="post">
 				{% csrf_token %}
 				<div>
+					<input type="datetime-local" name="pickUpTime">Pick Up Date</input>
 					<input type="submit" value="Purchase" method="post"></input>
 			</div>
 			</form>
