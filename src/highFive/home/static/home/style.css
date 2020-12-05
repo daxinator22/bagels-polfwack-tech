@@ -83,6 +83,10 @@
 	background-image: url('dough_2.jpg');
 }
 
+.addMoney_body{
+	background-image: url('money.jpg');
+}
+
 .content_box{
 	border-radius: 50px;
 	background-color: white;
@@ -102,6 +106,12 @@
 }
 
 #queue_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
+#addMoney_box{
 	padding-top: 10px;
 	padding-bottom: 30px;
 	display: block;
@@ -221,6 +231,26 @@
 	font-family: 'Permanent Marker', 'cursive';
 	font-size: 30px;
 	text-decoration: none;
+}
+
+.addMoney_bal{
+	color: #14cce3;
+	font-family: 'Arial';
+	font-size: 20px;
+}
+
+.add_button{
+	margin-top: 30px;
+	background-color: #14cce3;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+	color: white;
+	height: 75px;
+	width: 200px;
+}
+
+.add_button:hover{
+	background-color: #ed850e;
 }
 
 label{

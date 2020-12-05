@@ -281,9 +281,7 @@ def inventory(request):
 
 def addMoney(request):
     user = request.user
-    context = {
-        'user': user
-    }
+    context = get_user_context(request)
     if request.method == 'POST':
         form = addMoneyForm(request.POST)
         print("Errors: ", form.errors)

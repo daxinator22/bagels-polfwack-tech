@@ -9,29 +9,63 @@
 		<title>Welcome to the home page!</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+		<link type='image/png' href="{% static 'home/logo.png' %}" rel="shortcut icon">
 
 	</head>
 
 
-	<body id="homepage">
+	<body>
+		<div class='header'>
+			<div class='logo'>
+				<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
+			</div>
+			<div class='menu'>
+				<div class='menu_item'>
+					<a href='/' class='menu_link'>Home</a>
+				</div>
+				{% if user.is_authenticated %}
 
-		<h2>Add Money</h2>
-		<p>Your current balance is: {{ user.profile.currency }}</p>
+				{% for name, href in urls.items %}
+				<div class='menu_item'>
+					<a href="{{ href }}" class='menu_link'>{{ name }}</a>
+				</div>
+				{% endfor %}
 
-		<form method='post'>
-			{% csrf_token %}
-      {{ form.as_p }}
-			<div>
-				<p>Add Money To Your Account</p>
-				<input type="number" id="amount" name='amount' value="$">Amount</input>
-				<input type="submit" value="Add Money"></input>
-		    </div>
-		</form>
-    <div>
-      <p></p>
-			<a href='/home' >Return Home</a>
+				<div class='menu_item'>
+					<a href="/accounts/password_reset/" class='menu_link'>Reset Password</a>
+				</div>
+				<div class='menu_item'>
+					<a href="/accounts/logout/?next=/" class='menu_link'>Logout</a>
+				</div>
+				{% else %}
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Login</a>
+				</div>
+				<div class='menu_item'>
+					<a href='/accounts/signup/' class='menu_link'>Sign Up</a>
+				</div>
+				{% endif %}
+			</div>
 		</div>
 
+		<div class='addMoney_body body_page'>
+			<div class='content_box' id='addMoney_box'>
+				<h2 class='queue_title'>Add Money</h2>
+				<p class='addMoney_bal'>Your current balance is: ${{ user.profile.currency }}</p>
+
+				<form method='post'>
+					{% csrf_token %}
+				      {{ form.as_p }}
+						<div>
+						<label>Amount: </label>
+						<input type="number" id="amount" name='amount' value="$" style='text-align: center;'></input>
+					    </div>
+					<input type="submit" value="Add Money" class='add_button'></input>
+					</form>
+			</div>
+		</div>
 
 
 
