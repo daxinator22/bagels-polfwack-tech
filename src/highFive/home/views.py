@@ -32,28 +32,28 @@ def get_user_context(request):
 
     if group == "Customer":
         urls.update({
-            "Build Your Bagel!": "build",
-            'Add Money': 'addMoney',
+            "Build Your Bagel!": "/build/",
+            'Add Money': '/addMoney/',
         })
         button_link = '/build/'
 
     elif group == "Cashier":
         urls.update({
-            "Check Queue": "queue",
+            "Check Queue": "/queue/",
         })
         button_link = '/queue/'
 
     elif group == "Chef":
         urls.update({
-            "Check Queue": "queue",
+            "Check Queue": "/queue/",
         })
         button_link = '/queue/'
 
     elif group == "Manager":
         urls.update({
-            "Check Queue": "queue",
-            "Inventory": "inventory",
-            "Create User": "signup",
+            "Check Queue": "/queue/",
+            "Inventory": "/inventory/",
+            "Create User": "/signup/",
         })
         button_link = '/inventory/'
 
