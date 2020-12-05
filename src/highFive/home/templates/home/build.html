@@ -5,53 +5,107 @@
 
 <html lang="en">
 	<head>
-		<title>Welcome to the home page!</title>
+		<title>Build Your Bagel</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+		<link type='image/png' href="{% static 'home/logo.png' %}" rel="shortcut icon">
 
 	</head>
 
 
 	<body>
-
-		<h2>Build Your Bagel!</h2>
-		<div>
-			<a href='/home' >Return Home</a>
-		</div>
-			<p class="brown"><a href="checkout">Check Out</a></p>
-			{% if food_list %}
-
-			<form method="post">
-				{% csrf_token %}
-				{{ form.as_p }}
-				<div>
-
-				{% for foodItem in food_list %}
-					<input type="checkbox" class="center" value={{foodItem.item_id}} name="checked" id={{foodItem}}>{{ foodItem.sub_type }} {{foodItem.type}} : ${{foodItem.price}}</input>
-					<p></p>
-				{% endfor %}
-				<h2>Customize Your Own Bagel Sandwich!</h2>
-				{% for item in food_list %}
-					{% if item.type == 'Bagel' %}
-						<input type="checkbox" class="center" value={{item.item_id}} name="bagelCheck" id={{item}}>{{ item.sub_type }} {{ item.type }} : ${{item.price}}</input>
-					{% endif %}
-				{% endfor %}
-				{% for item in ingredient_list %}
-					<input type="checkbox" class="center" value={{item.type}} name="ingrChecked" id={{item}}>{{ item.type }} : ${{item.price}}</input>
-					<p></p>
-				{% endfor %}
-
-
-					<input type="submit" value="Add To Order" class="menuItem"></input>
+		<div class='header'>
+			<div class='logo'>
+				<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
+			</div>
+			<div class='menu'>
+				<div class='menu_item'>
+					<a href='/' class='menu_link'>Home</a>
 				</div>
-			</form>
+				{% if user.is_authenticated %}
 
-			{% else %}
-				<p> No Items Are Available!</p>
-			{% endif %}
+				{% for name, href in urls.items %}
+				<div class='menu_item'>
+					<a href="{{ href }}" class='menu_link'>{{ name }}</a>
+				</div>
+				{% endfor %}
 
+				<div class='menu_item'>
+					<a href="/accounts/password_reset/" class='menu_link'>Reset Password</a>
+				</div>
+				<div class='menu_item'>
+					<a href="/accounts/logout/?next=/" class='menu_link'>Logout</a>
+				</div>
+				{% else %}
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Login</a>
+				</div>
+				<div class='menu_item'>
+					<a href='/accounts/signup/' class='menu_link'>Sign Up</a>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		
+		<div class='build_body body_page'>
+			<div class='content_box' id='build_box'>
+				<h1 class='queue_title'>Build Your Bagel!</h1>
+					{% if food_list %}
 
+					<div class='build_titles'>
+						<div class='build_title'>
+							<h1 class='custom_title'>Choose a Bagel Sandwich</h1>
+						</div>
+						<div class='build_title'>
+							<h1 class='custom_title'>Customize Your Own Sandwhich</h1>
+						</div>
+					</div>
+					<form method="post">
+						<div class='build_items'>
+							{% csrf_token %}
+							{{ form.as_p }}
+							<div class='title_item'>
+								<div class='item_scoll'>
+									{% for foodItem in food_list %}
+										<div class='item_box'>
+											<input class='item_input' type="checkbox" value={{foodItem.item_id}} name="checked" id={{foodItem}}>
+											<p>{{ foodItem.sub_type }} {{foodItem.type}} : ${{foodItem.price}}</p>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+							<div class='title_item'>
+								<div class='item_scoll'>
+									{% for item in food_list %}
+										{% if item.type == 'Bagel' %}
+											<div class='item_box'>
+												<input class='item_input' type="checkbox" value={{item.item_id}} name="bagelCheck" id={{item}}>
+												<p>{{ item.sub_type }} {{ item.type }} : ${{item.price}}</p>
+											</div>
+										{% endif %}
+									{% endfor %}
+									{% for item in ingredient_list %}
+										<div class='item_box'>
+											<input class='item_input' type="checkbox" value={{item.type}} name="ingrChecked" id={{item}}>
+											<p>{{ item.type }} : ${{item.price}}</p>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
 
+						</div>
+						<input type="submit" value="Add To Order" class="order_button"></input>
+					</form>
+					<a href="checkout" class='checkout_link order_button'>Check Out</a>
+
+					{% else %}
+							<p> No Items Are Available!</p>
+				{% endif %}
+			</div>
+
+		</div>
 
 	</body>
 </html>

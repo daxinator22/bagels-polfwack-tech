@@ -83,6 +83,11 @@
 	background-image: url('dough_2.jpg');
 }
 
+.build_body{
+	background-image: url('build.jpg');
+	height: 1000px;
+}
+
 .addMoney_body{
 	background-image: url('money.jpg');
 }
@@ -123,6 +128,12 @@
 	display: block;
 }
 
+#build_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
 .login_title{
 	font-family: 'Permanent Marker', 'cursive';
 	font-size: 75px;
@@ -138,6 +149,52 @@
 .home_title{
 	font-family: 'Permanent Marker', 'cursive';
 	font-size: 125px;
+	color: #14cce3;
+}
+
+.build_items{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.title_item{
+	width: 75%;
+}
+
+.build_titles{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.build_title{
+	width: 50%;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.item_scoll{
+	background-color: white;
+	border-radius: 20px;
+	margin-right: 10px;
+	margin-left: 10px;
+	height: 500px;
+	overflow: scroll;
+}
+
+.item_box{
+	display: flex;
+	font-family: 'Arial';
+}
+
+.item_input{
+	width: 50px;
+}
+
+.custom_title{
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 25px;
 	color: #14cce3;
 }
 
@@ -202,6 +259,29 @@
 	padding-top: 10px;
 	padding-left: 200px;
 	padding-right: 200px;
+}
+
+.order_button{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 60px;
+	width: 25%;
+	background-color: #14cce3;
+	color: white;
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 30px;
+}
+
+.order_button:hover{
+	background-color: #ed850e;
+}
+
+.checkout_link{
+	text-decoration: none;
+	border-radius: 10px;
+	margin-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
 }
 
 .order_title{

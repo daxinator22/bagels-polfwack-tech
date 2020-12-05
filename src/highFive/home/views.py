@@ -86,6 +86,7 @@ def build(request):
         'food_list': food_list,
         'ingredient_list': ingredient_list
     }
+    context.update(get_user_context(request))
     if request.method == 'POST':
         form = CheckForm(request.POST)
 
@@ -115,18 +116,7 @@ def build(request):
                 ingrs.append(currIngr)
 
             sandwich.setIngredients(ingrs)
-
-
-
-
-
             order.sandwiches.append(sandwich)
-
-
-
-            
-
-
             print(order.bagels)
 
 
