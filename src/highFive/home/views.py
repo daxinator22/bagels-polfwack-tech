@@ -315,3 +315,20 @@ def signup(request):
         form = SignUpForm()
 
     return render(request, 'registration/signup.html', {'form': form})
+
+def employee_signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            group = Group.objects.get(name=request.POST.get('group'))
+            user = authenticate(username=username, password=raw_password)
+            user.groups.add(group)
+            login(request, user)
+            return redirect('/home')
+    else:
+        form = SignUpForm()
+
+    return render(request, 'registration/employee_signup.html', {'form': form})
