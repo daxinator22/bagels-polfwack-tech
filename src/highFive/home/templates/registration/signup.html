@@ -38,7 +38,8 @@
 			    <form method="post">
 				{% csrf_token %}
 				{{ form.as_p }}
-				<input type="hidden" name="group" value="Customer" />
+				<input type="hidden" name="group" value="Customer" /><br><br>
+                <button type="submit">Sign up</button>
 			    </form>
 		    </div>
 		</div>

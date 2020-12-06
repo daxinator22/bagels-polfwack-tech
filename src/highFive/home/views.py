@@ -53,7 +53,7 @@ def get_user_context(request):
         urls.update({
             "Check Queue": "/queue/",
             "Inventory": "/inventory/",
-            "Create User": "/signup/",
+            "Create User": "/employee_signup/",
         })
         button_link = '/inventory/'
 
@@ -311,7 +311,7 @@ def signup(request):
 
 
 def employee_signup(request):
-    if request.method == 'POST':
+    if request.method == 'POST1':
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
