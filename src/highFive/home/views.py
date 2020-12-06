@@ -18,7 +18,7 @@ from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
-from .forms import SignUpForm, CheckForm, addMoneyForm, FoodItemForm, IngredientsForm, PurchaseForm
+from .forms import SignUpForm, CheckForm, addMoneyForm, FoodItemForm, IngredientsForm
 from django.contrib import messages
 
 def get_user_context(request):
@@ -71,10 +71,7 @@ def index(request):
     return render(request, 'home/index.html', context)
 
 def confirmation(request):
-    context = {
-        'date': user.profile.order.pickUpDate.date()
-    }
-    context.update(get_user_context(request))
+    context = get_user_context(request)
     return render(request, 'home/confirmation.html', context)
 
 def build(request):
@@ -153,38 +150,32 @@ def checkout(request):
     }
     context.update(get_user_context(request))
     if request.method == 'POST':
-        #form = PurchaseForm(request.POST)
-        form = PurchaseForm(request.POST)
-        print("Valid: ", form.is_valid())
-        print("Errors: ", form.errors)
-        if form.is_valid():
-            items = ''
-
-            if user.profile.currency > total_price:
-                for item in order_list:
+        items = ''
+        if user.profile.currency > total_price:
+            for item in order_list:
+                item.remove_from_inv(1)
+                item.save()
+                items = items + f'{str(item.id)},'
+            for sandwich in sandwich_list:
+                for item in sandwich.ingredients:
                     item.remove_from_inv(1)
                     item.save()
                     items = items + f'{str(item.id)},'
-                for sandwich in sandwich_list:
-                    for item in sandwich.ingredients:
-                        item.remove_from_inv(1)
-                        item.save()
 
+            o = Order(items=items)
+            if request.POST.get('pickUpTime'):
+                date = request.POST.get('pickUpTime')
+                o.pickUpTime = date
 
-                o = Order(items=items)
-                if request.POST.get('pickUpTime'):
-                    date = request.POST.get('pickUpTime')
-                    user.profile.order.setPickUpDate(date)
-                    print("Raw Date: ", date)
-                o.save()
-                order_list.clear()
-                sandwich_list.clear()
-                total_price = 0
-                user.profile.currency = user.profile.currency - total_price
-                user.profile.order.bagels.clear()
-                user.profile.order.sandwiches.clear()
-                user.save()
-                return render(request, 'home/confirmation.html', context)
+            o.save()
+            order_list.clear()
+            sandwich_list.clear()
+            total_price = 0
+            user.profile.currency = user.profile.currency - total_price
+            user.profile.order.bagels.clear()
+            user.profile.order.sandwiches.clear()
+            user.save()
+            return render(request, 'home/confirmation.html', context)
 
     return render(request, 'home/checkout.html', context)
 
@@ -315,20 +306,3 @@ def signup(request):
         form = SignUpForm()
 
     return render(request, 'registration/signup.html', {'form': form})
-
-def employee_signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            group = Group.objects.get(name=request.POST.get('group'))
-            user = authenticate(username=username, password=raw_password)
-            user.groups.add(group)
-            login(request, user)
-            return redirect('/home')
-    else:
-        form = SignUpForm()
-
-    return render(request, 'registration/employee_signup.html', {'form': form})

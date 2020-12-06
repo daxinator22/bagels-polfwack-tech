@@ -90,6 +90,7 @@
 
 .checkout_body{
 	background-image: url('checkout.jpg');
+	height: 850px;
 }
 
 .addMoney_body{
@@ -386,6 +387,7 @@
 	font-family: 'Permanent Marker', 'cursive';
 	font-size: 30px;
 	background-color: #14cce3;
+	margin-bottom: 30px;
 	height: 60px;
 }
 

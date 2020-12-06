@@ -78,11 +78,13 @@
 				<form method="post">
 					{% csrf_token %}
 					<div>
+						<div style='margin-bottom: 30px;'>
+						<label>Pick Up Time</label>
+						<input type="datetime-local" name="pickUpTime">
+						</div>
 						<input type="submit" value="Purchase" method="post" class='purchase_button'></input>
-				</div>
+					</div>
 				</form>
-					<input type="datetime-local" name="pickUpTime">Pick Up Date</input>
-					<input type="submit" value="Purchase" method="post"></input>
 			</div>
 		</div>
 

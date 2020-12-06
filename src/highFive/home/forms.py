@@ -17,10 +17,6 @@ class CheckForm(forms.Form):
     isChecked = forms.BooleanField(required=False)
 
 
-class PurchaseForm(forms.Form):
-    pickUpDate = forms.DateTimeField(required=False)
-
-
 class addMoneyForm(forms.Form):
     amount = forms.IntegerField(max_value=1000)
 
