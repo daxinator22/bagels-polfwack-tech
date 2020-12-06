@@ -171,7 +171,6 @@ def checkout(request):
             o.save()
             order_list.clear()
             sandwich_list.clear()
-            total_price = 0
             user.profile.currency = user.profile.currency - total_price
             user.profile.order.bagels.clear()
             user.profile.order.sandwiches.clear()
