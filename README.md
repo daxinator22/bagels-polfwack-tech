@@ -23,3 +23,7 @@ customerTest: cust0mer!
 cashierTest: cashi3r!
 chefTest: ch3fP@ss
 managerTest: manag3r!
+
+The Use Case videos are located in docs/useCaseVideos
+
+The Slideshow is located in the docs folder.
