@@ -239,12 +239,12 @@ def inventory(request):
     )
     ing_list = Ingredients.objects.all()
     context = {
-        'user': request.user,
         'bagel_list' : bagel_list,
         'shmear_list' : shmear_list,
         'drink_list' : drink_list,
         'ing_list' : ing_list,
     }
+    context.update(get_user_context(request))
     if request.method == 'POST':
         form = FoodItemForm(request.POST)
         print('VALID: ', form.is_valid())

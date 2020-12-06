@@ -88,6 +88,11 @@
 	height: 1000px;
 }
 
+.inventory_body{
+	background-image: url('inventory.jpg');
+	height: 1500px;
+}
+
 .checkout_body{
 	background-image: url('checkout.jpg');
 	height: 850px;
@@ -134,6 +139,12 @@
 }
 
 #build_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
+#inventory_box{
 	padding-top: 10px;
 	padding-bottom: 30px;
 	display: block;
@@ -400,6 +411,15 @@
 	font-family: 'Arial';
 	font-size: 30px;
 	padding-bottom: 30px;
+}
+
+.table_box{
+	background-color: white;
+	font-family: 'Arial';
+	padding-bottom: 50px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-radius: 50px;
 }
 
 label{

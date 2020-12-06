@@ -6,143 +6,179 @@
 
 <html lang="en">
 	<head>
-		<title>Inventory page!</title>
+		<title>Inventory Page</title>
 		<meta charset="utf-8">
 		<link href="{% static 'home/style.css' %}" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+		<link type='image/png' href="{% static 'home/logo.png' %}" rel="shortcut icon">
 
 	</head>
 
 
 	<body>
-
-		<h2>High Five Bagels</h2>
-		{% if user.is_authenticated %}
-		<p>Welcome {{ user.username }}, <a href='/accounts/logout/?next=/'>logout</a></p>
-		<p>You are current logged in as {{ group }}</p>
-		<p>This is the inventory page</p>
-		<div class="row">
-			<div class="column">
-				<h3>Bagels</h3>
-                <table class="center">
-                    <thead>
-						<tr>
-							<th>Item</th>
-							<th>Amount</th>
-                            <th>Add or Remove</th>
-						</tr>
-					</thead>
-                    <tbody>
-                        {% for food_item in bagel_list %}
-                        <tr>
-                            <td class="left">{{ food_item.sub_type }}</td>
-                            <td>{{ food_item.inv_count }}</td>
-                            <td>
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="item" value="{{ food_item.sub_type }}" />
-                                    <input type="hidden" name="type" value="{{ food_item.type }}" />
-                                    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </td>
-
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+		<div class='header'>
+			<div class='logo'>
+				<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
 			</div>
-			<div class="column">
-				<h3>Schmears</h3>
-                <table class="center">
-                    <thead>
-						<tr>
-							<th>Item</th>
-							<th>Amount</th>
-                            <th>Add or Remove</th>
-						</tr>
-					</thead>
-                    <tbody>
-                        {% for food_item in shmear_list %}
-                        <tr>
-                            <td class="left">{{ food_item.sub_type }}</td>
-                            <td>{{ food_item.inv_count }}</td>
-                            <td>
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="item" value="{{ food_item.sub_type }}" />
-                                    <input type="hidden" name="type" value="{{ food_item.type }}" />
-                                    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+			<div class='menu'>
+				<div class='menu_item'>
+					<a href='/' class='menu_link'>Home</a>
+				</div>
+				{% if user.is_authenticated %}
+
+				{% for name, href in urls.items %}
+				<div class='menu_item'>
+					<a href="{{ href }}" class='menu_link'>{{ name }}</a>
+				</div>
+				{% endfor %}
+
+				<div class='menu_item'>
+					<a href="/accounts/password_reset/" class='menu_link'>Reset Password</a>
+				</div>
+				<div class='menu_item'>
+					<a href="/accounts/logout/?next=/" class='menu_link'>Logout</a>
+				</div>
+				{% else %}
+				<div class='menu_item'>
+					<a href='/accounts/login/' class='menu_link'>Login</a>
+				</div>
+				<div class='menu_item'>
+					<a href='/accounts/signup/' class='menu_link'>Sign Up</a>
+				</div>
+				{% endif %}
 			</div>
 		</div>
-		<div class="row">
-			<div class="column">
-                <h3>Sandwich Toppings</h3>
-                <table class="center">
-                    <thead>
+		<div class='inventory_body body_page'>
+			<div class='content_box' id='inventory_box'>
+				<h1 class='queue_title'>Inventory</h1>
+				{% if user.is_authenticated %}
+				<div class='table_box'>
+					<div class="row">
+						<div class="column">
+							<h3>Bagels</h3>
+					<table class="center">
+					    <thead>
+									<tr>
+										<th>Item</th>
+										<th>Amount</th>
+						    <th>Add or Remove</th>
+									</tr>
+								</thead>
+					    <tbody>
+						{% for food_item in bagel_list %}
 						<tr>
-							<th>Item</th>
-							<th>Amount</th>
-                            <th>Add or Remove</th>
+						    <td class="left">{{ food_item.sub_type }}</td>
+						    <td>{{ food_item.inv_count }}</td>
+						    <td>
+							<form method="post">
+							    {% csrf_token %}
+							    <input type="hidden" name="item" value="{{ food_item.sub_type }}" />
+							    <input type="hidden" name="type" value="{{ food_item.type }}" />
+							    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
+							    <button type="submit">Submit</button>
+							</form>
+						    </td>
+
 						</tr>
-					</thead>
-                    <tbody>
-                        {% for ing_item in ing_list %}
-                        <tr>
-                            <td class="left">{{ ing_item.type }}</td>
-                            <td>{{ ing_item.inv_count }}</td>
-                            <td>
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="type" value="{{ ing_item.type }}" />
-                                    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-			</div>
-			<div class="column">
-				<h3>Beverages</h3>
-                <table class="center">
-                    <thead>
+						{% endfor %}
+					    </tbody>
+					</table>
+						</div>
+						<div class="column">
+							<h3>Schmears</h3>
+					<table class="center">
+					    <thead>
+									<tr>
+										<th>Item</th>
+										<th>Amount</th>
+						    <th>Add or Remove</th>
+									</tr>
+								</thead>
+					    <tbody>
+						{% for food_item in shmear_list %}
 						<tr>
-							<th>Item</th>
-							<th>Amount</th>
-                            <th>Add or Remove</th>
+						    <td class="left">{{ food_item.sub_type }}</td>
+						    <td>{{ food_item.inv_count }}</td>
+						    <td>
+							<form method="post">
+							    {% csrf_token %}
+							    <input type="hidden" name="item" value="{{ food_item.sub_type }}" />
+							    <input type="hidden" name="type" value="{{ food_item.type }}" />
+							    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
+							    <button type="submit">Submit</button>
+							</form>
+						    </td>
 						</tr>
-					</thead>
-                    <tbody>
-                        {% for food_item in drink_list %}
-                        <tr>
-                            <td class="left">{{ food_item.sub_type }}</td>
-                            <td>{{ food_item.inv_count }}</td>
-                            <td>
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="item" value="{{ food_item.sub_type }}" />
-                                    <input type="hidden" name="type" value="{{ food_item.type }}" />
-                                    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+						{% endfor %}
+					    </tbody>
+					</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+					<h3>Sandwich Toppings</h3>
+					<table class="center">
+					    <thead>
+									<tr>
+										<th>Item</th>
+										<th>Amount</th>
+						    <th>Add or Remove</th>
+									</tr>
+								</thead>
+					    <tbody>
+						{% for ing_item in ing_list %}
+						<tr>
+						    <td class="left">{{ ing_item.type }}</td>
+						    <td>{{ ing_item.inv_count }}</td>
+						    <td>
+							<form method="post">
+							    {% csrf_token %}
+							    <input type="hidden" name="type" value="{{ ing_item.type }}" />
+							    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
+							    <button type="submit">Submit</button>
+							</form>
+						    </td>
+						</tr>
+						{% endfor %}
+					    </tbody>
+					</table>
+						</div>
+						<div class="column">
+							<h3>Beverages</h3>
+					<table class="center">
+					    <thead>
+									<tr>
+										<th>Item</th>
+										<th>Amount</th>
+						    <th>Add or Remove</th>
+									</tr>
+								</thead>
+					    <tbody>
+						{% for food_item in drink_list %}
+						<tr>
+						    <td class="left">{{ food_item.sub_type }}</td>
+						    <td>{{ food_item.inv_count }}</td>
+						    <td>
+							<form method="post">
+							    {% csrf_token %}
+							    <input type="hidden" name="item" value="{{ food_item.sub_type }}" />
+							    <input type="hidden" name="type" value="{{ food_item.type }}" />
+							    <input style="width:40px" type="number" name="amount" value="amount" required="Please add an amount" />
+							    <button type="submit">Submit</button>
+							</form>
+						    </td>
+						</tr>
+						{% endfor %}
+						    </tbody>
+						</table>
+						</div>
+					</div>
+					</div>
+					{% else %}
+					<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
+					{% endif %}
+				</div>
 			</div>
-		</div>
-		<p><a href="/">Home Page</a></p>
-		{% else %}
-		<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
-		{% endif %}
-	</body>
-</html>
+		</body>
+	</html>
