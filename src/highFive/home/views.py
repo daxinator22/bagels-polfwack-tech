@@ -182,6 +182,9 @@ def checkout(request):
 
 def queue(request):
     user_context = get_user_context(request)
+    if user_context['group'] == 'Customer':
+        return redirect('/')
+
     order_list = Order.objects.all()
     context = {
         'user': request.user,
@@ -193,6 +196,9 @@ def queue(request):
 
 def fill_order(request, order_id):
     user_context = get_user_context(request)
+    if user_context['group'] == 'Customer':
+        return redirect('/')
+
     item_string = Order.objects.filter(id=int(order_id))[0].items
     item_list = item_string.split(',')
     item_obj = list()
@@ -255,7 +261,11 @@ def inventory(request):
         'drink_list' : drink_list,
         'ing_list' : ing_list,
     }
-    context.update(get_user_context(request))
+    user_context = get_user_context(request)
+    if user_context['group'] != 'Manager':
+        return redirect('/')
+
+    context.update(user_context)
     if request.method == 'POST':
         form = FoodItemForm(request.POST)
         print('VALID: ', form.is_valid())
