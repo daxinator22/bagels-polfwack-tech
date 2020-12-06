@@ -53,7 +53,7 @@ def get_user_context(request):
         urls.update({
             "Check Queue": "/queue/",
             "Inventory": "/inventory/",
-            "Create User": "/signup/",
+            "Create User": "/employee_signup/",
         })
         button_link = '/inventory/'
 
@@ -199,7 +199,13 @@ def fill_order(request, order_id):
     item_obj = list()
     for item in item_list:
         if item != '':
-            item_obj.append(foodItem.objects.filter(id=item)[0])
+            try:
+                i = foodItem.objects.filter(id=item)[0]
+                item_obj.append(f'{i.sub_type} {i.type}')
+            except IndexError:
+                i = Ingredients.objects.filter(id=item)[0]
+                item_obj.append(f'{i.type}')
+
 
     context = {
         'order': get_object_or_404(Order, pk=order_id),

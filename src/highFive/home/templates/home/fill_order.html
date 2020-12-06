@@ -57,12 +57,12 @@
 				<h2 class='order_title'>Order #{{ order.id }}</h2>
 					<ul class='items_list'>
 					{% for item in items %}
-						<li>{{ item.type }}: {{ item.sub_type }}</li>
+						<li>{{ item }}</li>
 					{% endfor %}
 					</ul>	
 				</div>
 				<p class='fill_order_status'>Pick Up Date: {{ order.pickUpTime }}</p>
-				<p class='fill_order_status'><a href='/fill_order/{{ order.id }}/isFilled/' class='fill_order_link'>Is filled:</a> {{ order.isFilled }}</p>
+				<p class='fill_order_status'><a href='/fill_order/{{ order.id }}/isMade/' class='fill_order_link'>Is made:</a> {{ order.isMade }}</p>
 				<p class='fill_order_status'><a href='/fill_order/{{ order.id }}/isFilled/' class='fill_order_link'>Is filled:</a> {{ order.isFilled }}</p>
 				{% else %}
 				<p>You are not currently logged in, <a href="/accounts/login/">login here.</a>
