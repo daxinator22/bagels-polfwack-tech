@@ -35,11 +35,29 @@
 		<div class='content_box' id='signup_box'>
 		    <h1 class='login_title'>Sign up</h1>
 		    <div class='info_box'>
-			    <form method="post">
+				{% if user.is_authenticated %}
+                <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p>Please select what you are:</p>
+                <input type="radio" id="customer" name="group" value="Customer" required="Please select one">
+                <label for="customer">Customer</label><br>
+                <input type="radio" id="cashier" name="group" value="Cashier" required="Please select one">
+                <label for="cashier">Cashier</label><br>
+                <input type="radio" id="chef" name="group" value="Chef" required="Please select one">
+                <label for="chef">Chef</label><br>
+                <input type="radio" id="manager" name="group" value="Manager" required="Please select one">
+                <label for="manager">Manager</label><br><br>
+                <button type="submit">Sign up</button>
+                {% else %}
+                <form method="post">
 				{% csrf_token %}
 				{{ form.as_p }}
-				<input type="hidden" name="group" value="Customer" />
+				<input type="hidden" name="group" value="Customer" /><br><br>
+                <button type="submit">Sign up</button>
 			    </form>
+                {% endif %}
+            </form>
 		    </div>
 		</div>
         </div>
