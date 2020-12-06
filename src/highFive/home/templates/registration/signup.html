@@ -5,20 +5,43 @@
 
 <html lang="en">
    <head>
-      <title>Sign Up Page</title>
-      <meta charset="utf-8">
-      <link href="{% static 'home/style.css' %}" rel="stylesheet">
+      	<title>Sign Up Page</title>
+      	<meta charset="utf-8">
+	<link href="{% static 'home/style.css' %}" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<link type='image/png' href="{% static 'home/logo.png' %}" rel="shortcut icon">
 
    </head>
    <body>
+	<div class='header'>
+		<div class='logo'>
+			<a href='/'><img class='logo_img' src="{% static 'home/logo.png' %}" alt="I've misplaced the logo..."></a>
+		</div>
+		<div class='menu'>
+			<div class='menu_item'>
+				<a href='/' class='menu_link'>Home</a>
+			</div>
+			<div class='menu_item'>
+				<a href='/accounts/login/' class='menu_link'>Login</a>
+			</div>
+			<div class='menu_item'>
+				<a href='/accounts/signup/' class='menu_link'>Sign Up</a>
+			</div>
+		</div>
+	</div>
         <!-- templates/registration/login.html -->
-        <div class="signup">
-            <h2>Sign up</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="hidden" name="group" value="Customer" />
-            </form>
+        <div class="body_page login_body signup">
+		<div class='content_box' id='signup_box'>
+		    <h1 class='login_title'>Sign up</h1>
+		    <div class='info_box'>
+			    <form method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="hidden" name="group" value="Customer" />
+			    </form>
+		    </div>
+		</div>
         </div>
     </body>
 </html>

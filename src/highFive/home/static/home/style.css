@@ -120,6 +120,12 @@
 	display: block;
 }
 
+#signup_box{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	display: block;
+}
+
 #queue_box{
 	padding-top: 10px;
 	padding-bottom: 60px;
@@ -420,6 +426,14 @@
 	margin-left: 10px;
 	margin-right: 10px;
 	border-radius: 50px;
+}
+
+.info_box{
+	display: block;
+	text-align: left;
+	padding-left: 20px;
+	font-family: 'Arial';
+	color: white;
 }
 
 label{
